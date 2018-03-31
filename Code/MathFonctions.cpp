@@ -5,5 +5,5 @@ Date de creation : 31/03/2018
 */
 
 
-#include "MathFonction.hpp"
+#include "MathFonctions.hpp"
 
