@@ -6,7 +6,7 @@ Date de creation : 31/03/2018
 
 
 /* 
-Pour respecter le paradigme de rogramation orientée objet on crée une classe meme si les methodes sont basiques.
+Pour respecter le paradigme de programation orientée objet on crée une classe meme si les methodes sont basiques.
 Mais toutes les methodes sont static pour ne pas avoir a instancier l'objet.
 Les fonction s'appelent comme ca : resultat = MathFonction::Additioner(a, b);
 */
