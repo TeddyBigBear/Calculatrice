@@ -11,7 +11,32 @@
 
 enum
 {
-    ID_BTN_QUIT = wxID_HIGHEST + 1
+    ID_BTN_QUIT = wxID_HIGHEST + 1,
+    ID_BTN_0,
+    ID_BTN_1,
+    ID_BTN_2,
+    ID_BTN_3,
+    ID_BTN_4,
+    ID_BTN_5,
+    ID_BTN_6,
+    ID_BTN_7,
+    ID_BTN_8,
+    ID_BTN_9,
+    ID_BTN_ENTRER,
+    ID_BTN_POINT,
+    ID_BTN_POURCENT,
+    ID_BTN_DIVISER,
+    ID_BTN_MULTIPLIER,
+    ID_BTN_SOUSTRAIRE,
+    ID_BTN_ADDITIONNER,
+    ID_BTN_D1,
+    ID_BTN_C1,
+    ID_BTN_PUISSANCE,
+    ID_BTN_MPLUS,
+    ID_BTN_MR,
+    ID_BTN_MC,
+    ID_BTN_TEST,
+    ID_BTN_TEST2
 };
 
 
@@ -33,7 +58,32 @@ class MyFrame : public wxFrame
 
         // Méthodes évènementielles
         void OnBtnQuitClicked(wxCommandEvent &event);
-        void OnBtnEurosClicked(wxCommandEvent &event);
+        void OnBtn0Clicked(wxCommandEvent &event);
+        void OnBtn1Clicked(wxCommandEvent &event);
+        void OnBtn2Clicked(wxCommandEvent &event);
+        void OnBtn3Clicked(wxCommandEvent &event);
+        void OnBtn4Clicked(wxCommandEvent &event);
+        void OnBtn5Clicked(wxCommandEvent &event);
+        void OnBtn6Clicked(wxCommandEvent &event);
+        void OnBtn7Clicked(wxCommandEvent &event);
+        void OnBtn8Clicked(wxCommandEvent &event);
+        void OnBtn9Clicked(wxCommandEvent &event);
+        void OnBtnEntrerClicked(wxCommandEvent &event);
+        void OnBtnPointClicked(wxCommandEvent &event);
+        void OnBtnPourcentClicked(wxCommandEvent &event);
+        void OnBtnDiviserClicked(wxCommandEvent &event);
+        void OnBtnMultiplierClicked(wxCommandEvent &event);
+        void OnBtnSoustraireClicked(wxCommandEvent &event);
+        void OnBtnAdditionnerClicked(wxCommandEvent &event);
+        void OnBtnD1Clicked(wxCommandEvent &event);
+        void OnBtnC1Clicked(wxCommandEvent &event);
+        void OnBtnPuissanceClicked(wxCommandEvent &event);
+        void OnBtnMPlusClicked(wxCommandEvent &event);
+        void OnBtnMRClicked(wxCommandEvent &event);
+        void OnBtnMCClicked(wxCommandEvent &event);
+        void OnBtnTestClicked(wxCommandEvent &event);
+        void OnBtnTest2Clicked(wxCommandEvent &event);
+
          // Déclaration de la table des évènements
         DECLARE_EVENT_TABLE()
 };
