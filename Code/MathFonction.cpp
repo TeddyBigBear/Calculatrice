@@ -11,7 +11,7 @@ Date de creation : 31/03/2018
 
 using namespace std;
 
-string MathFonction::calculErreur ="";
+//string MathFonction::calculErreur =""; //je prefere gerer les erreurs plus haut (pour garder une classe statique)
 
 
 double MathFonction::Additioner(double a, double b)
@@ -31,8 +31,8 @@ double MathFonction::Multiplier(double a, double b)
 
 double MathFonction::Diviser(double a, double b)
 {
-    if (b == 0){
+    /* if (b == 0){
         this->calculErreur = "Divison par 0 impossible";
-    }
+    } */ //gestion des erreurs plus haut
     return a / b;
 }

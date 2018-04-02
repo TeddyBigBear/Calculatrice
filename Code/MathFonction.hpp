@@ -10,7 +10,7 @@ Pour respecter le paradigme de programation orientée objet on crée une classe 
 Mais toutes les methodes sont static pour ne pas avoir a instancier l'objet.
 Les fonction s'appelent comme ca : resultat = MathFonction::Additioner(a, b);
 */
-#include <string>
+//#include <string>
 
 using namespace std;
 
@@ -18,9 +18,9 @@ class MathFonction
     {  
     public:
         //Constructeur
-        MathFonction();
+        //MathFonction(); //Pas besoin d'un constructeur dans une classe statique 
         
-        static string calculErreur; //Variable qui va contenir temporairement les erreurs de calcul à afficher
+        //static string calculErreur; //Variable qui va contenir temporairement les erreurs de calcul à afficher
 
         // Returns a + b
         static double Additioner(double a, double b);
