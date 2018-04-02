@@ -1,6 +1,6 @@
 /* 
 MathFonction.hpp
-Projet Calculatrice / Groupe : Sonia 
+Projet Calculatrice / Groupe : JORE - BORIES - MARTINEZ - PHILIP 
 Date de creation : 31/03/2018
 */
 
