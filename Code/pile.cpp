@@ -24,6 +24,19 @@ il est necesaire d'instancier l'objet stack et le type d'elements qu'elle contie
 using namespace std;
 
 /**
+ * Cette fonction permet de verifier si la pile est vide
+ * parametres : objet stack
+ * retourne : true si stack vide ; false si non vide
+ */
+bool verifier_pile_vide(stack<double> pile_locale){
+    if (pile_locale.empty){
+      return true;
+    }
+    else
+      return false;
+}
+
+/**
  * Cette fonction permet d'ajouter un seul element au dessus de la pile
  * parametres : objet stack, l'element a ajouter
  */
