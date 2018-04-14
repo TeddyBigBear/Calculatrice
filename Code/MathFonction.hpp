@@ -33,5 +33,11 @@ class MathFonction
 
         // Returns a / b
         static double Diviser(double a, double b);
+
+        // Returns a * (b / 100);
+        static double Pourcentage(double a, double b);
+
+        // Returns a^b
+        static double Puissance(double a, double b);
     };
 } 
