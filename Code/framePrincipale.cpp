@@ -31,7 +31,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_BUTTON(ID_BTN_ADDITIONNER, MyFrame::OnBtnAdditionnerClicked)
     EVT_BUTTON(ID_BTN_D1, MyFrame::OnBtnD1Clicked)
     EVT_BUTTON(ID_BTN_C1, MyFrame::OnBtnC1Clicked)
-    EVT_BUTTON(ID_BTN_PUISSANCE, MyFrame::OnBtnPuissanceClicked)
+    EVT_BUTTON(ID_BTN_CARRE, MyFrame::OnBtnCarreClicked)
     EVT_BUTTON(ID_BTN_MPLUS, MyFrame::OnBtnMPlusClicked)
     EVT_BUTTON(ID_BTN_MR, MyFrame::OnBtnMRClicked)
     EVT_BUTTON(ID_BTN_MC, MyFrame::OnBtnMCClicked)
@@ -76,7 +76,7 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     boutonDiviser=new wxButton(this, ID_BTN_DIVISER, wxT("/"));
     boutonMultiplier=new wxButton(this, ID_BTN_MULTIPLIER, wxT("x"));
     boutonSoustraire=new wxButton(this, ID_BTN_SOUSTRAIRE, wxT("-"));
-    boutonPuissance=new wxButton(this, ID_BTN_PUISSANCE, wxT("^2"));
+    boutonCarre=new wxButton(this, ID_BTN_CARRE, wxT("^2"));
     boutonPoint=new wxButton(this, ID_BTN_POINT, wxT("."));
     boutonPourcent=new wxButton(this, ID_BTN_POURCENT, wxT("%"));
     boutonAdditionner=new wxButton(this, ID_BTN_ADDITIONNER, wxT("+"));
@@ -102,7 +102,7 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     boutonC1->SetBackgroundColour(*couleurBleuFonce);
     boutonMR->SetBackgroundColour(*couleurBleuFonce);
     boutonMC->SetBackgroundColour(*couleurBleuFonce);
-    boutonPuissance->SetBackgroundColour(*couleurBleuFonce);
+    boutonCarre->SetBackgroundColour(*couleurBleuFonce);
 
     //Ajout des boutons à la grille
     //1ere ligne
@@ -124,7 +124,7 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     grille->Add(bouton2, 0, wxEXPAND);
     grille->Add(bouton3, 0, wxEXPAND);
     grille->Add(boutonSoustraire, 0, wxEXPAND);
-    grille->Add(boutonPuissance, 0, wxEXPAND);
+    grille->Add(boutonCarre, 0, wxEXPAND);
     grille->Add(boutonMC, 0, wxEXPAND);
     //4eme ligne
     grille->Add(bouton0, 0, wxEXPAND);
@@ -225,7 +225,41 @@ void MyFrame::OnBtnPointClicked(wxCommandEvent &event){
 }
 
 void MyFrame::OnBtnPourcentClicked(wxCommandEvent &event){
+if (pileCalculatrice->_myPile.size() > 1)
+    {
+        //on recupère les deux premiers elements de la pile
+        double element1 = pileCalculatrice->recuperer();
+        double element2 = pileCalculatrice->recuperer();
 
+        //on supprime les 2 lignes correspondantes
+        //display->Remove(display->GetLineLength(display->GetNumberOfLines()-2),display->GetLineLength(display->GetNumberOfLines()));
+        
+        double debut, fin;
+
+        int tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+        int tailleAvantDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-3) +1; //+1 pour le saut à la ligne
+        
+        debut = this->tailleTexte - tailleDerniereLigne - tailleAvantDerniereLigne;
+        fin = this->tailleTexte;
+        cout << "debut : " << debut << endl;
+        cout << "fin : " << fin << endl;
+
+        display->Remove(debut, fin);
+
+
+        //on fait le pourcentage de l'élément 1 sur l'élément 2 et on met le resultat dans la pile
+        double resultat = MathFonction::pourcentage(element2, element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->ajouter(resultat);
+        //on affiche le résultat
+        (*display) << resultat << "\n";
+
+        tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+       // cout << "resultat string : " << to_string(resultat) << endl;
+        // cout << "taille resultat : " << display->GetLineLength(display->GetNumberOfLines()-2) << endl;
+        this->tailleTexte = this->tailleTexte - (fin - debut) + tailleDerniereLigne; //+1 = saut à la ligne
+
+        cout << "taille du texte : " << this->tailleTexte << endl;
+    }
 }
 
 void MyFrame::OnBtnDiviserClicked(wxCommandEvent &event){
@@ -375,7 +409,7 @@ void MyFrame::OnBtnAdditionnerClicked(wxCommandEvent &event){
         (*display) << resultat << "\n";
 
         tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
-       // cout << "resultat string : " << to_string(resultat) << endl;
+        // cout << "resultat string : " << to_string(resultat) << endl;
         // cout << "taille resultat : " << display->GetLineLength(display->GetNumberOfLines()-2) << endl;
         this->tailleTexte = this->tailleTexte - (fin - debut) + tailleDerniereLigne; //+1 = saut à la ligne
 
@@ -391,8 +425,40 @@ void MyFrame::OnBtnD1Clicked(wxCommandEvent &event){
 void MyFrame::OnBtnC1Clicked(wxCommandEvent &event){
 
 }
-void MyFrame::OnBtnPuissanceClicked(wxCommandEvent &event){
+void MyFrame::OnBtnCarreClicked(wxCommandEvent &event){
+    if (pileCalculatrice->_myPile.size() > 1)
+    {
+        //on recupère le premier element de la pile
+        double element1 = pileCalculatrice->recuperer();
 
+        //on supprime la ligne correspondante
+        
+        double debut, fin;
+
+        int tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne et -2 pour les 2 "\n"        int tailleAvantDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-3) +1; //+1 pour le saut à la ligne
+        
+        debut = this->tailleTexte - tailleDerniereLigne;
+        fin = this->tailleTexte;
+        cout << "debut : " << debut << endl;
+        cout << "fin : " << fin << endl;
+
+        display->Remove(debut, fin);
+
+
+        //on les additionne et on met le resultat dans la pile
+        double resultat = MathFonction::carre(element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->ajouter(resultat);
+        //on affiche le résultat
+        (*display) << resultat << "\n";
+
+        tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+       // cout << "resultat string : " << to_string(resultat) << endl;
+        // cout << "taille resultat : " << display->GetLineLength(display->GetNumberOfLines()-2) << endl;
+        this->tailleTexte = this->tailleTexte - (fin - debut) + tailleDerniereLigne; //+1 = saut à la ligne
+
+
+        cout << "taille du texte : " << this->tailleTexte << endl;
+    }
 }
 void MyFrame::OnBtnMPlusClicked(wxCommandEvent &event){
 
@@ -409,3 +475,41 @@ void MyFrame::OnBtnTestClicked(wxCommandEvent &event){
 void MyFrame::OnBtnTest2Clicked(wxCommandEvent &event){
 
 }
+
+/*void MyFrame::OnBtnPuissanceClicked(wxCommandEvent &event){
+    if (pileCalculatrice->_myPile.size() > 1){
+        //on recupère les deux premiers elements de la pile
+        double element1 = pileCalculatrice->recuperer();
+        double element2 = pileCalculatrice->recuperer();
+
+        //on supprime les 2 lignes correspondantes
+        //display->Remove(display->GetLineLength(display->GetNumberOfLines()-2),display->GetLineLength(display->GetNumberOfLines()));
+        
+        double debut, fin;
+
+        int tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+        int tailleAvantDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-3) +1; //+1 pour le saut à la ligne
+        
+        debut = this->tailleTexte - tailleDerniereLigne - tailleAvantDerniereLigne;
+        fin = this->tailleTexte;
+        cout << "debut : " << debut << endl;
+        cout << "fin : " << fin << endl;
+
+        display->Remove(debut, fin);
+
+
+        //on met élément2 à la puissance d'élément1 et on met le resultat dans la pile
+        double resultat = MathFonction::puissance(element2, element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->ajouter(resultat);
+        //on affiche le résultat
+        (*display) << resultat << "\n";
+
+        tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+        // cout << "resultat string : " << to_string(resultat) << endl;
+        // cout << "taille resultat : " << display->GetLineLength(display->GetNumberOfLines()-2) << endl;
+        this->tailleTexte = this->tailleTexte - (fin - debut) + tailleDerniereLigne; //+1 = saut à la ligne
+
+
+        cout << "taille du texte : " << this->tailleTexte << endl;
+    }
+}*/

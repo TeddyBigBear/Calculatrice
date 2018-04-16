@@ -38,6 +38,7 @@ double MathFonction::diviser(double a, double b)
     } */ //gestion des erreurs plus haut
     return a / b;
 }
+
 double MathFonction::pourcentage(double a, double b)
 {
     /*quand on appui sur pourcent le dernier nombre rentré represente 
@@ -46,7 +47,13 @@ double MathFonction::pourcentage(double a, double b)
     */
     return a * (b / 100);
 }
+
 double MathFonction::puissance(double a, double b)
 {
     return pow(a, b);
+}
+
+double MathFonction::carre(double a)
+{
+    return pow(a, 2);
 }

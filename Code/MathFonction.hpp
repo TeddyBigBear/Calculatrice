@@ -39,4 +39,7 @@ class MathFonction{
 
         // Returns a^b
         static double puissance(double a, double b);
+
+        // Returns a^²
+        static double carre(double a);
 };
