@@ -19,67 +19,55 @@ pop() – suprime le premier element de la pile
 il est necesaire d'instancier l'objet stack et le type d'elements qu'elle contiens ex : stack <int> g = gq;
 */
 
-//librairies externe
-#include <iostream>
-#include <stack>
 
 //librairies interne
-#include "Pile.hpp"
+#include "pile.hpp"
 
- 
 using namespace std;
+
+//Constructeur de la pile
+Pile::Pile(){
+  this->_myPile;
+}
+
 
 /**
  * Cette fonction permet de verifier si la pile est vide
  * parametres : objet stack
  * retourne : true si stack vide ; false si non vide
  */
-bool verifier_pile_vide(stack<double> pile_locale){
-    if (pile_locale.empty){
+bool Pile::isEmpty(){
+    if (this->_myPile.empty()){
       return true;
     }
     else
       return false;
 }
 
+//TODO: Checker si 1 seul élément est dans la pile lors des opérations
+
+
 /**
  * Cette fonction permet d'ajouter un seul element au dessus de la pile
  * parametres : objet stack, l'element a ajouter
  */
-void Ajouter_a_la_pile (stack<double> pile_locale, double element)
+void Pile::ajouter (double element)
 {
-  pile_locale.push(element);
+  this->_myPile.push(element);
 }
 
-/**
+/**re_premier_elements_pile
  * Cette fonction renvois le premier element de la pile sans le supprimer
  * parametres : objet stack
  */
-double lire_premier_elements_pile (stack<double> pile_locale)
+double Pile::recuperer ()
 {
-  return pile_locale.top();
+  double top1 = this->_myPile.top(); //enregistre le premier
+  this->_myPile.pop(); //supprime le premier
+  return top1;
 }
 
-/**
- * Cette fonction renvois le deuxieme element de la pile sans le supprimer
- * parametres : objet stack
- */
-/*c'est peut etre pas une fonction utile selon l'implementation
 
-double lire_deuxiemme_elements_pile (stack<int> pile_locale)
-{
-  int top = pile_locale.top(); //enregistre le premier
-  pile_locale.pop(); //supprime le premier
-  return pile_locale.top(); // retourne le deuxiemme
-  pile_locale.push(top); //remet le premier dans la pile
-}
-*/
-
-/**
- * Cette fonction permet de supprimer un seul element au dessus de la pile
- * parametres : objet stack
- */
-void supprimer_premier_elements_pile (stack<double> pile_locale)
-{
-  pile_locale.pop();
+void Pile::supprimer (){
+  //free this._myPile;
 }

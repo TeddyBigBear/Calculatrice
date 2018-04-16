@@ -3,21 +3,23 @@ pile.hpp
 Projet Calculatrice / Groupe : JORE - BORIES - MARTINEZ - PHILIP 
 Date de creation : 31/03/2018
 */
+//librairies externe
+#include <iostream>
+#include <stack>
 
 using namespace std;
  
 class Pile
 {
-private:
-
 
 public:
     Pile();
     ~Pile();
 
-    bool verifier_pile_vide();
-    void Ajouter_a_la_pile (stack<int> st, double element);
-    double lire_premier_elements_pile (stack<double> pile_locale);
-    //double lire_deuxiemme_elements_pile (stack<double> pile_locale);
-    void supprimer_premier_elements_pile (stack<double> pile_locale);
+    stack<double> _myPile;
+
+    bool isEmpty();
+    void ajouter (double element);
+    double recuperer ();
+    void supprimer ();
 };
