@@ -202,7 +202,10 @@ void MyFrame::OnBtn9Clicked(wxCommandEvent &event){
 }
 
 void MyFrame::OnBtnEntrerClicked(wxCommandEvent &event){
-     if (display->GetValue()!=""){
+    wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
+    double element = atof(strValue);
+    //if (display->GetValue()!=""){
+    if (element != 0){
         //wxString strValue = display->GetValue();
         wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
         double element = atof(strValue);
