@@ -17,12 +17,11 @@ il est necesaire d'instancier l'objet stack et le type d'elements qu'elle contie
 //librairies interne
 #include "pile.hpp"
 
- 
 using namespace std;
 
 //Constructeur de la pile
 Pile::Pile(){
-  this._myPile = nullptr;
+  this->_myPile;
 }
 
 
@@ -31,8 +30,8 @@ Pile::Pile(){
  * parametres : objet stack
  * retourne : true si stack vide ; false si non vide
  */
-bool verifier_pile_vide(){
-    if (_myPile.empty){
+bool Pile::isEmpty(){
+    if (this->_myPile.empty()){
       return true;
     }
     else
@@ -46,45 +45,23 @@ bool verifier_pile_vide(){
  * Cette fonction permet d'ajouter un seul element au dessus de la pile
  * parametres : objet stack, l'element a ajouter
  */
-void Ajouter_a_la_pile (double element)
+void Pile::ajouter (double element)
 {
-  this._myPile.push(element);
+  this->_myPile.push(element);
 }
 
-/**
+/**re_premier_elements_pile
  * Cette fonction renvois le premier element de la pile sans le supprimer
  * parametres : objet stack
  */
-double lire_premier_elements_pile ()
+double Pile::recuperer ()
 {
-  return this._myPile.top();
-}
-
-/**
- * Cette fonction renvois le deuxieme element de la pile sans le supprimer
- * parametres : objet stack
- */
-
-double lire_deuxiemme_elements_pile ()
-{
-  double top1 = this._myPile.top(); //enregistre le premier
-  this._myPile.pop(); //supprime le premier
-  double top2 = this._myPile.top(); // retourne le deuxiemme
-  this._myPile.push(top); //remet le premier dans la pile
-  return top2;
+  double top1 = this->_myPile.top(); //enregistre le premier
+  this->_myPile.pop(); //supprime le premier
+  return top1;
 }
 
 
-/**
- * Cette fonction permet de supprimer un seul element au dessus de la pile
- * parametres : objet stack
- */
-void supprimer_premier_elements_pile ()
-{
-  this._myPile.pop();
-}
-
-
-void supprimer_entierement_pile (){
-  free this._myPile;
+void Pile::supprimer (){
+  //free this._myPile;
 }
