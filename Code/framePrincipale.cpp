@@ -204,7 +204,7 @@ void MyFrame::OnBtn9Clicked(wxCommandEvent &event){
 void MyFrame::OnBtnEntrerClicked(wxCommandEvent &event){
      if (display->GetValue()!=""){
         //wxString strValue = display->GetValue();
-        wxString strValue = display->GetLineText(2);
+        wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
         double element = atof(strValue);
         pileCalculatrice->_myPile.push(element);
 
@@ -226,15 +226,120 @@ void MyFrame::OnBtnPourcentClicked(wxCommandEvent &event){
 }
 
 void MyFrame::OnBtnDiviserClicked(wxCommandEvent &event){
+    if (pileCalculatrice->_myPile.size() > 1)
+    {
+        //on recupère les deux premiers elements de la pile
+        double element1 = pileCalculatrice->recuperer();
+        double element2 = pileCalculatrice->recuperer();
 
+        //on supprime les 2 lignes correspondantes
+        //display->Remove(display->GetLineLength(display->GetNumberOfLines()-2),display->GetLineLength(display->GetNumberOfLines()));
+        
+        double debut, fin;
+
+        int tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+        int tailleAvantDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-3) +1; //+1 pour le saut à la ligne
+        
+        debut = this->tailleTexte - tailleDerniereLigne - tailleAvantDerniereLigne;
+        fin = this->tailleTexte;
+        cout << "debut : " << debut << endl;
+        cout << "fin : " << fin << endl;
+
+        display->Remove(debut, fin);
+
+
+        //on les divise et on met le resultat dans la pile
+        double resultat = MathFonction::diviser(element2, element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->ajouter(resultat);
+        //on affiche le résultat
+        (*display) << resultat << "\n";
+
+        tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+       // cout << "resultat string : " << to_string(resultat) << endl;
+        // cout << "taille resultat : " << display->GetLineLength(display->GetNumberOfLines()-2) << endl;
+        this->tailleTexte = this->tailleTexte - (fin - debut) + tailleDerniereLigne; //+1 = saut à la ligne
+
+
+        cout << "taille du texte : " << this->tailleTexte << endl;
+    }
 }
 
 void MyFrame::OnBtnMultiplierClicked(wxCommandEvent &event){
+    if (pileCalculatrice->_myPile.size() > 1)
+    {
+        //on recupère les deux premiers elements de la pile
+        double element1 = pileCalculatrice->recuperer();
+        double element2 = pileCalculatrice->recuperer();
 
+        //on supprime les 2 lignes correspondantes
+        //display->Remove(display->GetLineLength(display->GetNumberOfLines()-2),display->GetLineLength(display->GetNumberOfLines()));
+        
+        double debut, fin;
+
+        int tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+        int tailleAvantDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-3) +1; //+1 pour le saut à la ligne
+        
+        debut = this->tailleTexte - tailleDerniereLigne - tailleAvantDerniereLigne;
+        fin = this->tailleTexte;
+        cout << "debut : " << debut << endl;
+        cout << "fin : " << fin << endl;
+
+        display->Remove(debut, fin);
+
+
+        //on les multiplie et on met le resultat dans la pile
+        double resultat = MathFonction::multiplier(element2, element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->ajouter(resultat);
+        //on affiche le résultat
+        (*display) << resultat << "\n";
+
+        tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+       // cout << "resultat string : " << to_string(resultat) << endl;
+        // cout << "taille resultat : " << display->GetLineLength(display->GetNumberOfLines()-2) << endl;
+        this->tailleTexte = this->tailleTexte - (fin - debut) + tailleDerniereLigne; //+1 = saut à la ligne
+
+
+        cout << "taille du texte : " << this->tailleTexte << endl;
+    }
 }
 
 void MyFrame::OnBtnSoustraireClicked(wxCommandEvent &event){
+    if (pileCalculatrice->_myPile.size() > 1)
+    {
+        //on recupère les deux premiers elements de la pile
+        double element1 = pileCalculatrice->recuperer();
+        double element2 = pileCalculatrice->recuperer();
 
+        //on supprime les 2 lignes correspondantes
+        //display->Remove(display->GetLineLength(display->GetNumberOfLines()-2),display->GetLineLength(display->GetNumberOfLines()));
+        
+        double debut, fin;
+
+        int tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+        int tailleAvantDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-3) +1; //+1 pour le saut à la ligne
+        
+        debut = this->tailleTexte - tailleDerniereLigne - tailleAvantDerniereLigne;
+        fin = this->tailleTexte;
+        cout << "debut : " << debut << endl;
+        cout << "fin : " << fin << endl;
+
+        display->Remove(debut, fin);
+
+
+        //on les soustrait et on met le resultat dans la pile
+        double resultat = MathFonction::soustraire(element2, element1); //Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->ajouter(resultat);
+        //on affiche le résultat
+        (*display) << resultat << "\n";
+
+        tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+       // cout << "resultat string : " << to_string(resultat) << endl;
+        // cout << "taille resultat : " << display->GetLineLength(display->GetNumberOfLines()-2) << endl;
+        this->tailleTexte = this->tailleTexte - (fin - debut) + tailleDerniereLigne; //+1 = saut à la ligne
+
+
+        cout << "taille du texte : " << this->tailleTexte << endl;
+    }
 }
 
 void MyFrame::OnBtnAdditionnerClicked(wxCommandEvent &event){
@@ -261,7 +366,7 @@ void MyFrame::OnBtnAdditionnerClicked(wxCommandEvent &event){
 
 
         //on les additionne et on met le resultat dans la pile
-        double resultat = MathFonction::additioner(element1, element2);
+        double resultat = MathFonction::additioner(element2, element1);//Element2 avant element1 pour garder le bon ordre d'opérande
         pileCalculatrice->ajouter(resultat);
         //on affiche le résultat
         (*display) << resultat << "\n";
