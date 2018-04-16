@@ -1,18 +1,21 @@
+//librairies externe
+#include <iostream>
+#include <stack>
 
 using namespace std;
  
 class Pile
 {
-private:
-
 
 public:
     Pile();
     ~Pile();
 
+    stack<double> _myPile;
+
     bool verifier_pile_vide();
-    void Ajouter_a_la_pile (stack<int> st, double element);
-    double lire_premier_elements_pile (stack<double> pile_locale);
-    //double lire_deuxiemme_elements_pile (stack<double> pile_locale);
-    void supprimer_premier_elements_pile (stack<double> pile_locale);
+    void Ajouter_a_la_pile (double element);
+    double lire_premier_elements_pile ();
+    double lire_deuxiemme_elements_pile ();
+    void supprimer_premier_elements_pile ();
 };
