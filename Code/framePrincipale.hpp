@@ -8,6 +8,8 @@
 #define MAINFRAME_H_INCLUDED
 
 #include <wx/wx.h>
+#include "pile.hpp"
+#include "mathFonction.hpp"
 
 enum
 {
@@ -47,6 +49,9 @@ class MyFrame : public wxFrame
        // virtual ~MainFrame(); //destructeur
 
     protected : 
+        Pile *pileCalculatrice;
+        long tailleTexte=0;
+
         wxBoxSizer *sizer;
         wxGridSizer *grille;
         wxTextCtrl *display;

@@ -5,6 +5,8 @@
 
 #include "framePrincipale.hpp"
 #include <iostream>
+//#include "pile.hpp"
+
 
 using namespace std;
 
@@ -144,6 +146,9 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     SetSizer(sizer);
     SetMinSize(wxSize(270, 220));
     Centre();
+
+    //Création de la pile de base
+    pileCalculatrice = new Pile();
 }
 
 //Fonctions pour gerer les evenements
@@ -197,7 +202,19 @@ void MyFrame::OnBtn9Clicked(wxCommandEvent &event){
 }
 
 void MyFrame::OnBtnEntrerClicked(wxCommandEvent &event){
-    (*display) << "\n";
+     if (display->GetValue()!=""){
+        //wxString strValue = display->GetValue();
+        wxString strValue = display->GetLineText(2);
+        double element = atof(strValue);
+        pileCalculatrice->_myPile.push(element);
+
+        this->tailleTexte += strValue.size() + 1; //+1 correspond au saut à la ligne
+        cout << "taille texte : " << this->tailleTexte << endl;
+
+        (*display) << "\n";
+        cout << "element ajouter dans la pile " << pileCalculatrice->_myPile.top() << endl;
+        cout << "nb de ligne " << display->GetNumberOfLines() << endl;
+    }
 }
 
 void MyFrame::OnBtnPointClicked(wxCommandEvent &event){
@@ -221,8 +238,45 @@ void MyFrame::OnBtnSoustraireClicked(wxCommandEvent &event){
 }
 
 void MyFrame::OnBtnAdditionnerClicked(wxCommandEvent &event){
+    if (pileCalculatrice->_myPile.size() > 1)
+    {
+        //on recupère les deux premiers elements de la pile
+        double element1 = pileCalculatrice->recuperer();
+        double element2 = pileCalculatrice->recuperer();
 
+        //on supprime les 2 lignes correspondantes
+        //display->Remove(display->GetLineLength(display->GetNumberOfLines()-2),display->GetLineLength(display->GetNumberOfLines()));
+        
+        double debut, fin;
+
+        int tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+        int tailleAvantDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-3) +1; //+1 pour le saut à la ligne
+        
+        debut = this->tailleTexte - tailleDerniereLigne - tailleAvantDerniereLigne;
+        fin = this->tailleTexte;
+        cout << "debut : " << debut << endl;
+        cout << "fin : " << fin << endl;
+
+        display->Remove(debut, fin);
+
+
+        //on les additionne et on met le resultat dans la pile
+        double resultat = MathFonction::additioner(element1, element2);
+        pileCalculatrice->ajouter(resultat);
+        //on affiche le résultat
+        (*display) << resultat << "\n";
+
+        tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
+       // cout << "resultat string : " << to_string(resultat) << endl;
+        // cout << "taille resultat : " << display->GetLineLength(display->GetNumberOfLines()-2) << endl;
+        this->tailleTexte = this->tailleTexte - (fin - debut) + tailleDerniereLigne; //+1 = saut à la ligne
+
+
+        cout << "taille du texte : " << this->tailleTexte << endl;
+    }
 }
+
+
 void MyFrame::OnBtnD1Clicked(wxCommandEvent &event){
 
 }
@@ -242,7 +296,7 @@ void MyFrame::OnBtnMCClicked(wxCommandEvent &event){
 
 }
 void MyFrame::OnBtnTestClicked(wxCommandEvent &event){
-
+    
 }
 void MyFrame::OnBtnTest2Clicked(wxCommandEvent &event){
 
