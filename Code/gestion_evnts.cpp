@@ -11,10 +11,18 @@ Date de creation : 02/04/2018
 
 using namespace std;
 
-//TODO : implementation constructeur
+//implementation constructeur
+    gestion_evnts::gestion_evnts(){
+        stack <int> pile_locale; 
+    }
 
+/* 
+Cette fonction est a utiliser lorseque l'utilisateur appuie sur le boutton +
+il n'y a pas de parametre
+*/
+string gestion_evnts::boutonAdditionner()
+{
 
-string gestion_evnts::boutonAdditionner(){
     if (verifier_pile_vide())
     {
         return "Pas suffisament de paramètres"
@@ -27,16 +35,16 @@ string gestion_evnts::boutonAdditionner(){
         supprimer_premier_elements_pile(pile_locale);
         if (verifier_pile_vide()){
             return "Pas suffisament de paramètres";
-            break;
-        }
+        }else{
         double element2 = lire_premier_elements_pile(pile_locale);
         supprimer_premier_elements_pile(pile_locale);
 
         //on les additionne et on met le resultat dans la pile
-        double resultat = MathFonction::additionne(element1, element2);
+        double resultat = MathFonction::Additioner(element1, element2);
         Ajouter_a_la_pile(pile_locale, resultat);
         //on renvoit le resultat a afficher
         return to_string(resultat);
+        }
     }
 }
 string gestion_evnts::boutonSoustraire(){

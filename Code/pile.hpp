@@ -1,3 +1,8 @@
+/* 
+pile.hpp
+Projet Calculatrice / Groupe : JORE - BORIES - MARTINEZ - PHILIP 
+Date de creation : 31/03/2018
+*/
 
 using namespace std;
  
