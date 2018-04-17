@@ -30,7 +30,7 @@ class gestion_evnts
 
     //Boutons Memoire
     static string boutonMPlus();
-    static string bouton MMoins();
+    static string boutonMMoins();
     static string boutonMRC();
     static string boutonMC();
 
