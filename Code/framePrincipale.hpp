@@ -52,6 +52,10 @@ class MyFrame : public wxFrame
     protected : 
         Pile *pileCalculatrice;
         long tailleTexte=0;
+        double debut=0;
+        double fin=0;
+        int tailleDerniereLigne;
+        int tailleAvantDerniereLigne;
 
         wxBoxSizer *sizer;
         wxGridSizer *grille;
@@ -85,11 +89,16 @@ class MyFrame : public wxFrame
         void OnBtnC1Clicked(wxCommandEvent &event);
         void OnBtnCarreClicked(wxCommandEvent &event);
         void OnBtnMPlusClicked(wxCommandEvent &event);
-	void OnBtnMMoinsClicked(wxCommandEvent &event);
+	    void OnBtnMMoinsClicked(wxCommandEvent &event);
         void OnBtnMRClicked(wxCommandEvent &event);
         void OnBtnMCClicked(wxCommandEvent &event);
         void OnBtnTestClicked(wxCommandEvent &event);
         void OnBtnTest2Clicked(wxCommandEvent &event);
+
+        //Méthodes de suppresion de ligne dans le Display
+        void supprimer1Ligne();
+        void supprimer2Lignes();
+
 
          // Déclaration de la table des évènements
         DECLARE_EVENT_TABLE()
