@@ -35,6 +35,7 @@ enum
     ID_BTN_C1,
     ID_BTN_CARRE,
     ID_BTN_MPLUS,
+	ID_BTN_MMoins,
     ID_BTN_MR,
     ID_BTN_MC,
     ID_BTN_TEST,
@@ -57,7 +58,7 @@ class MyFrame : public wxFrame
         wxTextCtrl *display;
         wxButton *bouton0, *bouton1, *bouton2, *bouton3, *bouton4, *bouton5, *bouton6, *bouton7, *bouton8, *bouton9;
         wxButton *boutonDiviser, *boutonMultiplier, *boutonAdditionner, *boutonSoustraire, *boutonPourcent, *boutonCarre;
-        wxButton *boutonPoint, *boutonD1, *boutonC1, *boutonMPlus, *boutonMR, *boutonMC;
+        wxButton *boutonPoint, *boutonD1, *boutonC1, *boutonMPlus, *boutonMMoins, *boutonMR, *boutonMC;
         wxButton *boutonTest, *boutonTest2;
         wxButton *boutonEntrer;
 
@@ -84,6 +85,7 @@ class MyFrame : public wxFrame
         void OnBtnC1Clicked(wxCommandEvent &event);
         void OnBtnCarreClicked(wxCommandEvent &event);
         void OnBtnMPlusClicked(wxCommandEvent &event);
+	void OnBtnMMoinsClicked(wxCommandEvent &event);
         void OnBtnMRClicked(wxCommandEvent &event);
         void OnBtnMCClicked(wxCommandEvent &event);
         void OnBtnTestClicked(wxCommandEvent &event);
