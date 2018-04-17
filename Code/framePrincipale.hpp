@@ -97,6 +97,8 @@ class MyFrame : public wxFrame
         void supprimer1Ligne();
         void supprimer2Lignes();
 
+        //Méthode d'affichage dans le Display
+        void afficherResultat();
 
          // Déclaration de la table des évènements
         DECLARE_EVENT_TABLE()
