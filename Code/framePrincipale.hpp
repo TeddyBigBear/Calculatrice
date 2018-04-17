@@ -31,15 +31,14 @@ enum
     ID_BTN_MULTIPLIER,
     ID_BTN_SOUSTRAIRE,
     ID_BTN_ADDITIONNER,
-    ID_BTN_D1,
-    ID_BTN_C1,
+    ID_BTN_PUISSANCE,
+    ID_BTN_DELETE,
+    ID_BTN_CLEAR,
     ID_BTN_CARRE,
     ID_BTN_MPLUS,
-	ID_BTN_MMoins,
+	ID_BTN_MMOINS,
     ID_BTN_MR,
-    ID_BTN_MC,
-    ID_BTN_TEST,
-    ID_BTN_TEST2
+    ID_BTN_MC
 };
 
 
@@ -61,8 +60,8 @@ class MyFrame : public wxFrame
         wxGridSizer *grille;
         wxTextCtrl *display;
         wxButton *bouton0, *bouton1, *bouton2, *bouton3, *bouton4, *bouton5, *bouton6, *bouton7, *bouton8, *bouton9;
-        wxButton *boutonDiviser, *boutonMultiplier, *boutonAdditionner, *boutonSoustraire, *boutonPourcent, *boutonCarre;
-        wxButton *boutonPoint, *boutonD1, *boutonC1, *boutonMPlus, *boutonMMoins, *boutonMR, *boutonMC;
+        wxButton *boutonDiviser, *boutonMultiplier, *boutonAdditionner, *boutonSoustraire, *boutonPourcent, *boutonPuissance, *boutonCarre;
+        wxButton *boutonPoint, *boutonDelete, *boutonClear, *boutonMPlus, *boutonMMoins, *boutonMR, *boutonMC;
         wxButton *boutonTest, *boutonTest2;
         wxButton *boutonEntrer;
 
@@ -85,15 +84,14 @@ class MyFrame : public wxFrame
         void OnBtnMultiplierClicked(wxCommandEvent &event);
         void OnBtnSoustraireClicked(wxCommandEvent &event);
         void OnBtnAdditionnerClicked(wxCommandEvent &event);
-        void OnBtnD1Clicked(wxCommandEvent &event);
-        void OnBtnC1Clicked(wxCommandEvent &event);
+        void OnBtnPuissanceClicked(wxCommandEvent &event);
+        void OnBtnDeleteClicked(wxCommandEvent &event);
+        void OnBtnClearClicked(wxCommandEvent &event);
         void OnBtnCarreClicked(wxCommandEvent &event);
         void OnBtnMPlusClicked(wxCommandEvent &event);
 	    void OnBtnMMoinsClicked(wxCommandEvent &event);
         void OnBtnMRClicked(wxCommandEvent &event);
         void OnBtnMCClicked(wxCommandEvent &event);
-        void OnBtnTestClicked(wxCommandEvent &event);
-        void OnBtnTest2Clicked(wxCommandEvent &event);
 
         //Méthodes de suppresion de ligne dans le Display
         void supprimer1Ligne();
