@@ -1,3 +1,9 @@
+/* 
+pile.hpp
+Projet Calculatrice / Groupe : JORE - BORIES - MARTINEZ - PHILIP 
+Date de creation : 31/03/2018
+*/
+
 //librairies externe
 #include <iostream>
 #include <stack>
