@@ -33,6 +33,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_BUTTON(ID_BTN_C1, MyFrame::OnBtnC1Clicked)
     EVT_BUTTON(ID_BTN_CARRE, MyFrame::OnBtnCarreClicked)
     EVT_BUTTON(ID_BTN_MPLUS, MyFrame::OnBtnMPlusClicked)
+	EVT_BUTTON(ID_BTN_MMOINS, MyFrame::OnBtnMMoinsClicked)
     EVT_BUTTON(ID_BTN_MR, MyFrame::OnBtnMRClicked)
     EVT_BUTTON(ID_BTN_MC, MyFrame::OnBtnMCClicked)
     EVT_BUTTON(ID_BTN_TEST, MyFrame::OnBtnTestClicked)
@@ -82,6 +83,7 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     boutonAdditionner=new wxButton(this, ID_BTN_ADDITIONNER, wxT("+"));
     boutonD1=new wxButton(this, ID_BTN_D1, wxT("D1"));
     boutonMPlus=new wxButton(this, ID_BTN_MPLUS, wxT("M+"));
+	boutonMMoins=new wxButton(this, ID_BTN_MMOINS, wxT("M-"));
     boutonC1=new wxButton(this, ID_BTN_C1, wxT("C1"));
     boutonMR=new wxButton(this, ID_BTN_MR, wxT("MR"));
     boutonMC=new wxButton(this, ID_BTN_MC, wxT("MC"));
@@ -99,6 +101,7 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     boutonAdditionner->SetBackgroundColour(*couleurBleuClair);
     boutonD1->SetBackgroundColour(*couleurBleuFonce);
     boutonMPlus->SetBackgroundColour(*couleurBleuFonce);
+	boutonMMoins->SetBackgroundColour(*couleurBleuFonce);
     boutonC1->SetBackgroundColour(*couleurBleuFonce);
     boutonMR->SetBackgroundColour(*couleurBleuFonce);
     boutonMC->SetBackgroundColour(*couleurBleuFonce);
@@ -132,7 +135,7 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     grille->Add(boutonPourcent, 0, wxEXPAND);
     grille->Add(boutonAdditionner, 0, wxEXPAND);
     grille->Add(boutonTest, 0, wxEXPAND);
-    grille->Add(boutonTest2, 0, wxEXPAND);
+    grille->Add(boutonMMoins, 0, wxEXPAND);
 
     //Ajout de la grille au sizer
     sizer->Add(grille, 5, wxALL | wxEXPAND, 5);
@@ -461,6 +464,9 @@ void MyFrame::OnBtnCarreClicked(wxCommandEvent &event){
     }
 }
 void MyFrame::OnBtnMPlusClicked(wxCommandEvent &event){
+
+}
+void MyFrame::OnBtnMMoinsClicked(wxCommandEvent &event){
 
 }
 void MyFrame::OnBtnMRClicked(wxCommandEvent &event){
