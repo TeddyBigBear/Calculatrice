@@ -1,9 +1,3 @@
-/* 
-pile.cpp
-Projet Calculatrice / Groupe : JORE - BORIES - MARTINEZ - PHILIP 
-Date de creation : 31/03/2018
-*/
-
 /*
 La pile (ou stack en anglais) 
 est un type de stockage de données qui marche en LIFO (Last In First Out).
@@ -29,22 +23,6 @@ using namespace std;
 Pile::Pile(){
   this->_myPile;
 }
-
-
-/**
- * Cette fonction permet de verifier si la pile est vide
- * parametres : objet stack
- * retourne : true si stack vide ; false si non vide
- */
-bool Pile::isEmpty(){
-    if (this->_myPile.empty()){
-      return true;
-    }
-    else
-      return false;
-}
-
-//TODO: Checker si 1 seul élément est dans la pile lors des opérations
 
 
 /**

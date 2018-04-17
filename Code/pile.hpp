@@ -1,8 +1,3 @@
-/* 
-pile.hpp
-Projet Calculatrice / Groupe : JORE - BORIES - MARTINEZ - PHILIP 
-Date de creation : 31/03/2018
-*/
 //librairies externe
 #include <iostream>
 #include <stack>
@@ -18,7 +13,6 @@ public:
 
     stack<double> _myPile;
 
-    bool isEmpty();
     void ajouter (double element);
     double recuperer ();
     void supprimer ();
