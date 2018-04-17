@@ -163,6 +163,8 @@ string gestion_evnts::boutonPuissance(){
 //Boutons Memoire
 string gestion_evnts::boutonMPlus(){
 }
+string gestion_evnts::boutonMMoins(){
+}
 string gestion_evnts::boutonMRC(){
 }
 string gestion_evnts::boutonMC(){
