@@ -1,3 +1,9 @@
+/* 
+pile.cpp
+Projet Calculatrice / Groupe : JORE - BORIES - MARTINEZ - PHILIP 
+Date de creation : 31/03/2018
+*/
+
 /*
 La pile (ou stack en anglais) 
 est un type de stockage de données qui marche en LIFO (Last In First Out).
