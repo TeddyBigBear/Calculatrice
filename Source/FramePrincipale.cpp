@@ -490,17 +490,27 @@ void MyFrame::OnBtnLogClicked(wxCommandEvent &event){
 
 
 //*************FONCTIONS MEMOIRE*************
+
+double MEMOIRE = 0;
+
 void MyFrame::OnBtnMPlusClicked(wxCommandEvent &event){
-    //TODO AXEL
+    wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
+    double element = atof(strValue);
+    MEMOIRE = MEMOIRE + element;
+    (*display) << "\n" << MEMOIRE << "\n";
 }
 void MyFrame::OnBtnMMoinsClicked(wxCommandEvent &event){
-    //TODO AXEL
+    wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
+    double element = atof(strValue);
+    MEMOIRE = MEMOIRE - element;
+    (*display) << "\n" << MEMOIRE << "\n";
 }
 void MyFrame::OnBtnMRClicked(wxCommandEvent &event){
-    //TODO AXEL
+    (*display) << "\n" << MEMOIRE << "\n";
 }
 void MyFrame::OnBtnMCClicked(wxCommandEvent &event){
-    //TODO AXEL
+    MEMOIRE = 0;
+    (*display) << "\n" << MEMOIRE << "\n";
 }
 
 //*************AUTRES*************
