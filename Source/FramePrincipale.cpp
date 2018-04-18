@@ -171,6 +171,13 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     SetMinSize(wxSize(270, 220));
     Centre();
 
+    tailleTexte = 0;
+    debut = 0;
+    fin = 0;
+    tailleDerniereLigne = 0;
+    tailleAvantDerniereLigne = 0;
+    memoire = 0;
+
     //Création de la pile de base
     pileCalculatrice = new Pile();
 }
@@ -188,69 +195,94 @@ void MyFrame::OnBtnQuitClicked(wxCommandEvent &event){
 //*************CHIFFRES*************
 void MyFrame::OnBtn0Clicked(wxCommandEvent &event){
     (*display) << "0";
+    this->tailleTexte += 1;
 }
 
 void MyFrame::OnBtn1Clicked(wxCommandEvent &event){
     (*display) << "1";
+    this->tailleTexte += 1;
 }
 
 void MyFrame::OnBtn2Clicked(wxCommandEvent &event){
     (*display) << "2";
+    this->tailleTexte += 1;
 }
 
 void MyFrame::OnBtn3Clicked(wxCommandEvent &event){
     (*display) << "3";
+    this->tailleTexte += 1;
 }
 
 void MyFrame::OnBtn4Clicked(wxCommandEvent &event){
     (*display) << "4";
+    this->tailleTexte += 1;
 }
 
 void MyFrame::OnBtn5Clicked(wxCommandEvent &event){
     (*display) << "5";
+    this->tailleTexte += 1;
 }
 
 void MyFrame::OnBtn6Clicked(wxCommandEvent &event){
     (*display) << "6";
+    this->tailleTexte += 1;
 }
 
 void MyFrame::OnBtn7Clicked(wxCommandEvent &event){
     (*display) << "7";
+    this->tailleTexte += 1;
 }
 
 void MyFrame::OnBtn8Clicked(wxCommandEvent &event){
     (*display) << "8";
+    this->tailleTexte += 1;
 }
 
 void MyFrame::OnBtn9Clicked(wxCommandEvent &event){
     (*display) << "9";
+    this->tailleTexte += 1;
 }
 
 void MyFrame::OnBtnPointClicked(wxCommandEvent &event){
     (*display) << ".";
+    this->tailleTexte += 1;
 }
 
 //*************ENTRER DELETE CLEAR*************
 void MyFrame::OnBtnEntrerClicked(wxCommandEvent &event){
     wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
-    double element = atof(strValue);
-
-    if (element != 0){
-        wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
+    //si la ligne n'est pas vide
+    if (strValue != ""){
         double element = atof(strValue);
         pileCalculatrice->_myPile.push(element);
 
-        this->tailleTexte += strValue.size() + 1; //+1 correspond au saut à la ligne
+        //this->tailleTexte += strValue.size() + 1; //+1 correspond au saut à la ligne
+        this->tailleTexte += 1; //saut de ligne
 
         (*display) << "\n";
     }
 }
 
 void MyFrame::OnBtnDeleteClicked(wxCommandEvent &event){
-    //TODO
+    this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-1) +1;
+    this->fin = this->tailleTexte;
+
+    //on teste >1 car on veut garder le /n
+    if(this->tailleDerniereLigne>1){
+        display->Remove(this->fin -1, this->fin);
+        this->tailleDerniereLigne -= 1;
+        this->tailleTexte -= 1;
+    } 
 }
+
 void MyFrame::OnBtnClearClicked(wxCommandEvent &event){
-    //TODO
+    while (!pileCalculatrice->_myPile.empty()){
+        pileCalculatrice->_myPile.pop();
+    }
+    this->debut = 0;
+    //Récupère toute les lignes ajoutées à la pile + l'éventuelle ligne non empilée = la totalité du display.
+    this->fin = this->tailleTexte+display->GetLineText(display->GetNumberOfLines()-1).size(); 
+    display->Remove(this->debut,this->fin);
 }
 
 //*************FONCTIONS MATHEMATIQUES*************
@@ -491,27 +523,29 @@ void MyFrame::OnBtnLogClicked(wxCommandEvent &event){
 
 //*************FONCTIONS MEMOIRE*************
 
-double MEMOIRE = 0;
-
 void MyFrame::OnBtnMPlusClicked(wxCommandEvent &event){
     wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
     double element = atof(strValue);
-    MEMOIRE = MEMOIRE + element;
-    (*display) << "\n" << MEMOIRE << "\n";
+    this->memoire = this->memoire + element;
+    (*display) << "\n" << this->memoire << "\n";
 }
+
 void MyFrame::OnBtnMMoinsClicked(wxCommandEvent &event){
     wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
     double element = atof(strValue);
-    MEMOIRE = MEMOIRE - element;
-    (*display) << "\n" << MEMOIRE << "\n";
+    this->memoire = this->memoire - element;
+    (*display) << "\n" << this->memoire << "\n";
 }
+
 void MyFrame::OnBtnMRClicked(wxCommandEvent &event){
-    (*display) << "\n" << MEMOIRE << "\n";
+    (*display) << this->memoire << "\n";
 }
+
 void MyFrame::OnBtnMCClicked(wxCommandEvent &event){
-    MEMOIRE = 0;
-    (*display) << "\n" << MEMOIRE << "\n";
+    this->memoire = 0;
+    (*display) << this->memoire << "\n";
 }
+
 
 //*************AUTRES*************
 void MyFrame::supprimer1Ligne(){

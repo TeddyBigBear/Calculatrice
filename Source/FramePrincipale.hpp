@@ -56,11 +56,13 @@ class MyFrame : public wxFrame
 
     protected : 
         Pile *pileCalculatrice;
-        long tailleTexte=0;
-        double debut=0;
-        double fin=0;
+        long tailleTexte;
+        double debut;
+        double fin;
         int tailleDerniereLigne;
         int tailleAvantDerniereLigne;
+        double memoire;
+
 
         wxBoxSizer *sizer;
         wxGridSizer *grille, *grilleEntree, *sousGrille;
