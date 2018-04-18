@@ -22,4 +22,6 @@ public:
     void ajouter (double element);
     double recuperer ();
     void supprimer ();
+    bool Pile1ElementMinimum();
+    bool Pile2ElementsMinimum(); 
 };

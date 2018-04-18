@@ -11,7 +11,7 @@ using namespace std;
 // Macro pour rediriger l'exécution vers notre classe
 IMPLEMENT_APP(MyApp);
 
-#include "framePrincipale.hpp"
+#include "FramePrincipale.hpp"
 
 bool MyApp::OnInit()
 {

@@ -44,3 +44,35 @@ double Pile::recuperer ()
 void Pile::supprimer (){
   //free this._myPile;
 }
+
+bool Pile::Pile1ElementMinimum(){
+  if(!this->_myPile.empty()){
+    double top1 = this->_myPile.top(); //enregistre le premier
+    this->_myPile.pop(); //supprime le premier
+    
+    if(this->_myPile.empty()){
+      ajouter(top1);
+      return true; //La pile est vide après avoir retiré 1 élément, il y a au moins 1 élément
+    }
+    else ajouter(top1);
+    return true; //La pile n'est pas vide après avoir retiré 1 élément, la pile a au moins 2 éléments
+  }
+  return false;//La pile a 0 élément
+}
+
+bool Pile::Pile2ElementsMinimum(){
+  if(!this->_myPile.empty()){
+    double top1 = this->_myPile.top(); //enregistre le premier
+    this->_myPile.pop(); //supprime le premier
+    
+    if(this->_myPile.empty()){
+      ajouter(top1);
+      return false; //La pile est vide après avoir retiré 1 élément, il n'y a qu'un seul élement
+    }
+    else {
+      ajouter(top1);
+      return true; //La pile n'est pas vide après avoir retiré 1 élément, la pile a au moins 2 éléments 
+    }
+  }
+  return false; //La pile a 0 élément
+}

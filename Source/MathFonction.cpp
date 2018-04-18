@@ -55,3 +55,33 @@ double MathFonction::Carre(double a)
 {
     return pow(a, 2);
 }
+
+double MathFonction::Cube(double a)
+{
+    return pow(a, 3);
+}
+
+double MathFonction::Expo(double a)
+{
+    return exp(a);
+}
+
+double MathFonction::Racine(double a)
+{
+    return sqrt(a);
+}
+
+double MathFonction::Log(double a)
+{
+    return log10(a);
+}
+
+double MathFonction::Ln(double a)
+{
+    return log(a);
+}
+
+double MathFonction::PuissanceDe10(double a)
+{
+    return pow(10, a);
+}
