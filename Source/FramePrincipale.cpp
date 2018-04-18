@@ -3,7 +3,7 @@
  * BORIES - JORE - MARTINEZ - PHILIP
  */
 
-#include "framePrincipale.hpp"
+#include "FramePrincipale.hpp"
 #include <iostream>
 //#include "pile.hpp"
 
@@ -30,6 +30,12 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_BUTTON(ID_BTN_SOUSTRAIRE, MyFrame::OnBtnSoustraireClicked)
     EVT_BUTTON(ID_BTN_ADDITIONNER, MyFrame::OnBtnAdditionnerClicked)
     EVT_BUTTON(ID_BTN_PUISSANCE, MyFrame::OnBtnPuissanceClicked)
+    EVT_BUTTON(ID_BTN_10_PUISSANCE, MyFrame::OnBtn10PuissanceClicked)
+    EVT_BUTTON(ID_BTN_RACINE, MyFrame::OnBtnRacineClicked)
+    EVT_BUTTON(ID_BTN_CUBE, MyFrame::OnBtnCubeClicked)
+    EVT_BUTTON(ID_BTN_EXPO, MyFrame::OnBtnExpoClicked)
+    EVT_BUTTON(ID_BTN_LN, MyFrame::OnBtnLnClicked)
+    EVT_BUTTON(ID_BTN_LOG, MyFrame::OnBtnLogClicked)
     EVT_BUTTON(ID_BTN_DELETE, MyFrame::OnBtnDeleteClicked)
     EVT_BUTTON(ID_BTN_CLEAR, MyFrame::OnBtnClearClicked)
     EVT_BUTTON(ID_BTN_CARRE, MyFrame::OnBtnCarreClicked)
@@ -41,26 +47,17 @@ END_EVENT_TABLE()
 
 
 //Constructeur
-MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint(400, 100), wxSize(270, 220)){   
+MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint(400, 100), wxSize(330, 220)){   
     
     sizer = new wxBoxSizer(wxVERTICAL);
-
-    //Menu
-    wxMenu *m_pHelpMenu = new wxMenu();
-    wxMenuBar *m_pMenuBar = new wxMenuBar();
-    m_pHelpMenu->Append(wxID_ABOUT, _T("&About"));
-    m_pMenuBar->Append(m_pHelpMenu, _T("&Help"));
-    SetMenuBar(m_pMenuBar);
  
-    //Zone d'affihage du texte
-    //display = new wxTextCtrl(this, -1, wxT(""), wxPoint(-1, -1), wxSize(-1, -1), wxTE_RIGHT);
-    //avec plusieurs lignes
+    //Zone d'affihage du texte avec plusieurs lignes
     display = new wxTextCtrl(this, -1, _T(""), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY);
     
     sizer->Add(display, 0, wxALL | wxEXPAND, 5);
 
-    //Grille de 4 lignes et 6 colonnes
-    grille = new wxGridSizer(4, 6, 3, 3);
+    //Grille de 4 lignes et 7 colonnes
+    grille = new wxGridSizer(4, 7, 3, 3);
 
     //Creation des boutons
     bouton0=new wxButton(this, ID_BTN_0, wxT("0"));
@@ -78,33 +75,49 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     boutonSoustraire=new wxButton(this, ID_BTN_SOUSTRAIRE, wxT("-"));
     boutonCarre=new wxButton(this, ID_BTN_CARRE, wxT("^2"));
     boutonPuissance=new wxButton(this, ID_BTN_PUISSANCE, wxT("^"));
+    bouton10Puissance=new wxButton(this, ID_BTN_10_PUISSANCE, wxT("10^"));
+    boutonRacine=new wxButton(this, ID_BTN_RACINE, wxT("√"));
+    boutonCube=new wxButton(this, ID_BTN_CUBE, wxT("^3"));
+    boutonExpo=new wxButton(this, ID_BTN_EXPO, wxT("e^"));
+    boutonLn=new wxButton(this, ID_BTN_LN, wxT("ln"));
+    boutonLog=new wxButton(this, ID_BTN_LOG, wxT("log"));
     boutonPoint=new wxButton(this, ID_BTN_POINT, wxT("."));
     boutonPourcent=new wxButton(this, ID_BTN_POURCENT, wxT("%"));
     boutonAdditionner=new wxButton(this, ID_BTN_ADDITIONNER, wxT("+"));
-    boutonDelete=new wxButton(this, ID_BTN_DELETE, wxT("<--"));
+    boutonDelete=new wxButton(this, ID_BTN_DELETE, wxT("<---"));
     boutonMPlus=new wxButton(this, ID_BTN_MPLUS, wxT("M+"));
 	boutonMMoins=new wxButton(this, ID_BTN_MMOINS, wxT("M-"));
     boutonClear=new wxButton(this, ID_BTN_CLEAR, wxT("Clr"));
     boutonMR=new wxButton(this, ID_BTN_MR, wxT("MR"));
     boutonMC=new wxButton(this, ID_BTN_MC, wxT("MC"));
+    boutonEntrer=new wxButton(this, ID_BTN_ENTRER, wxT("Entrer"));
 
     //Couleur des boutons
     wxColour *couleurBleuClair= new wxColour(218,244,251);
+    wxColour *couleurBleu= new wxColour(236,240,251);
     wxColour *couleurBleuFonce= new wxColour(218,227,251);
-    wxColour *couleurOrange= new wxColour(253,218,199);
+    wxColour *couleurOrange= new wxColour(254,214,192);
+    wxColour *couleurOrangeClair= new wxColour(250,235,226);
     boutonDiviser->SetBackgroundColour(*couleurBleuClair);
     boutonMultiplier->SetBackgroundColour(*couleurBleuClair);
     boutonSoustraire->SetBackgroundColour(*couleurBleuClair);
     boutonPourcent->SetBackgroundColour(*couleurBleuClair);
     boutonAdditionner->SetBackgroundColour(*couleurBleuClair);
-    boutonPuissance->SetBackgroundColour(*couleurBleuFonce);
-    boutonDelete->SetBackgroundColour(*couleurBleuFonce);
+    boutonPuissance->SetBackgroundColour(*couleurBleu);
+    bouton10Puissance->SetBackgroundColour(*couleurBleu);
+    boutonRacine->SetBackgroundColour(*couleurBleu);
+    boutonCube->SetBackgroundColour(*couleurBleu);
+    boutonExpo->SetBackgroundColour(*couleurBleu);
+    boutonLn->SetBackgroundColour(*couleurBleu);
+    boutonLog->SetBackgroundColour(*couleurBleu);
+    boutonCarre->SetBackgroundColour(*couleurBleu);
     boutonMPlus->SetBackgroundColour(*couleurBleuFonce);
 	boutonMMoins->SetBackgroundColour(*couleurBleuFonce);
-    boutonClear->SetBackgroundColour(*couleurBleuFonce);
     boutonMR->SetBackgroundColour(*couleurBleuFonce);
     boutonMC->SetBackgroundColour(*couleurBleuFonce);
-    boutonCarre->SetBackgroundColour(*couleurBleuFonce);
+    boutonClear->SetBackgroundColour(*couleurOrangeClair);
+    boutonDelete->SetBackgroundColour(*couleurOrangeClair);
+    boutonEntrer->SetBackgroundColour(*couleurOrange);
 
     //Ajout des boutons à la grille
     //1ere ligne
@@ -112,14 +125,16 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     grille->Add(bouton8, 0, wxEXPAND);
     grille->Add(bouton9, 0, wxEXPAND);
     grille->Add(boutonDiviser, 0, wxEXPAND);
-    grille->Add(boutonDelete, 0, wxEXPAND);
+    grille->Add(bouton10Puissance, 0, wxEXPAND);
+    grille->Add(boutonExpo, 0, wxEXPAND);
     grille->Add(boutonMPlus, 0, wxEXPAND);
     //2eme ligne
     grille->Add(bouton4, 0, wxEXPAND);
     grille->Add(bouton5, 0, wxEXPAND);
     grille->Add(bouton6, 0, wxEXPAND);
     grille->Add(boutonMultiplier, 0, wxEXPAND);
-    grille->Add(boutonClear, 0, wxEXPAND);
+    grille->Add(boutonCube, 0, wxEXPAND);
+    grille->Add(boutonLn, 0, wxEXPAND);
     grille->Add(boutonMR, 0, wxEXPAND);
     //3eme ligne
     grille->Add(bouton1, 0, wxEXPAND);
@@ -127,6 +142,7 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     grille->Add(bouton3, 0, wxEXPAND);
     grille->Add(boutonSoustraire, 0, wxEXPAND);
     grille->Add(boutonCarre, 0, wxEXPAND);
+    grille->Add(boutonLog, 0, wxEXPAND);
     grille->Add(boutonMC, 0, wxEXPAND);
     //4eme ligne
     grille->Add(bouton0, 0, wxEXPAND);
@@ -134,16 +150,22 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     grille->Add(boutonPourcent, 0, wxEXPAND);
     grille->Add(boutonAdditionner, 0, wxEXPAND);
     grille->Add(boutonPuissance, 0, wxEXPAND);
+    grille->Add(boutonRacine, 0, wxEXPAND);
     grille->Add(boutonMMoins, 0, wxEXPAND);
 
     //Ajout de la grille au sizer
     sizer->Add(grille, 5, wxALL | wxEXPAND, 5);
 
-    //Bouton "Enter"
-    boutonEntrer = new wxButton(this, ID_BTN_ENTRER, wxT("ENTER"), wxPoint(-1, -1), wxSize(170, 30), wxTE_LEFT);
-    boutonEntrer->SetBackgroundColour(*couleurOrange);
-    
-    sizer->Add(boutonEntrer, 0, wxLEFT | wxBOTTOM, 5);
+    //Grille et sous grille pour les touche entrées, clear et delete
+    grilleEntree = new wxGridSizer(1, 2, 3, 3);
+    sousGrille = new wxGridSizer(1, 2, 3, 3);
+    grilleEntree->Add(boutonEntrer, 0, wxEXPAND);
+    sousGrille->Add(boutonDelete, 0, wxEXPAND);
+    sousGrille->Add(boutonClear, 0, wxEXPAND);
+    grilleEntree->Add(sousGrille, 0, wxEXPAND);
+
+    //sizer->Add(boutonEntrer, 0, wxLEFT | wxBOTTOM, 5);
+    sizer->Add(grilleEntree, 5, wxALL | wxEXPAND, 5);
 
     SetSizer(sizer);
     SetMinSize(wxSize(270, 220));
@@ -163,6 +185,7 @@ void MyFrame::OnBtnQuitClicked(wxCommandEvent &event){
     	Close();
 }
 
+//*************CHIFFRES*************
 void MyFrame::OnBtn0Clicked(wxCommandEvent &event){
     (*display) << "0";
 }
@@ -203,6 +226,11 @@ void MyFrame::OnBtn9Clicked(wxCommandEvent &event){
     (*display) << "9";
 }
 
+void MyFrame::OnBtnPointClicked(wxCommandEvent &event){
+    (*display) << ".";
+}
+
+//*************ENTRER DELETE CLEAR*************
 void MyFrame::OnBtnEntrerClicked(wxCommandEvent &event){
     wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
     double element = atof(strValue);
@@ -218,10 +246,14 @@ void MyFrame::OnBtnEntrerClicked(wxCommandEvent &event){
     }
 }
 
-void MyFrame::OnBtnPointClicked(wxCommandEvent &event){
-    (*display) << ".";
+void MyFrame::OnBtnDeleteClicked(wxCommandEvent &event){
+    //TODO
+}
+void MyFrame::OnBtnClearClicked(wxCommandEvent &event){
+    //TODO
 }
 
+//*************FONCTIONS MATHEMATIQUES*************
 void MyFrame::OnBtnPourcentClicked(wxCommandEvent &event){
     if (pileCalculatrice->_myPile.size() > 1)
     {
@@ -233,7 +265,7 @@ void MyFrame::OnBtnPourcentClicked(wxCommandEvent &event){
         supprimer2Lignes();
 
         //on fait le pourcentage de l'élément 1 sur l'élément 2 et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::pourcentage(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->resultatOperation = MathFonction::Pourcentage(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
         pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
         //on affiche le résultat
         afficherResultat();
@@ -251,7 +283,7 @@ void MyFrame::OnBtnDiviserClicked(wxCommandEvent &event){
         supprimer2Lignes();
 
         //on les divise et on met le resultat dans la pile
-        double resultat = MathFonction::diviser(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+        double resultat = MathFonction::Diviser(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
         pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
         //on affiche le résultat
         afficherResultat();
@@ -269,7 +301,7 @@ void MyFrame::OnBtnMultiplierClicked(wxCommandEvent &event){
         supprimer2Lignes();
 
         //on les multiplie et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::multiplier(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->resultatOperation = MathFonction::Multiplier(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
         pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
         //on affiche le résultat
         afficherResultat();
@@ -287,7 +319,7 @@ void MyFrame::OnBtnSoustraireClicked(wxCommandEvent &event){
         supprimer2Lignes();
 
         //on les soustrait et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::soustraire(pileCalculatrice->element2, pileCalculatrice->element1); //Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->resultatOperation = MathFonction::Soustraire(pileCalculatrice->element2, pileCalculatrice->element1); //Element2 avant element1 pour garder le bon ordre d'opérande
         pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
         //on affiche le résultat
         afficherResultat();
@@ -297,7 +329,7 @@ void MyFrame::OnBtnSoustraireClicked(wxCommandEvent &event){
 void MyFrame::OnBtnAdditionnerClicked(wxCommandEvent &event){
     if (pileCalculatrice->_myPile.size() > 1)
     {
-        //on recupère les deux premiers elements de la pile
+         //on recupère les deux premiers elements de la pile
         pileCalculatrice->element1 = pileCalculatrice->recuperer();
         pileCalculatrice->element2 = pileCalculatrice->recuperer();
 
@@ -305,7 +337,7 @@ void MyFrame::OnBtnAdditionnerClicked(wxCommandEvent &event){
         supprimer2Lignes();
 
         //on les additionne et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::additioner(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->resultatOperation = MathFonction::Additionner(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
         pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
@@ -314,16 +346,15 @@ void MyFrame::OnBtnAdditionnerClicked(wxCommandEvent &event){
 }
 
 void MyFrame::OnBtnPuissanceClicked(wxCommandEvent &event){
-
     if (pileCalculatrice->_myPile.size() > 1){
-        //on recupère les deux premiers elements de la pile
+      //on recupère les deux premiers elements de la pile
         pileCalculatrice->element1 = pileCalculatrice->recuperer();
         pileCalculatrice->element2 = pileCalculatrice->recuperer();
 
         supprimer2Lignes();
 
         //on met élément2 à la puissance d'élément1 et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::puissance(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+        pileCalculatrice->resultatOperation = MathFonction::Puissance(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
         pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
@@ -331,12 +362,6 @@ void MyFrame::OnBtnPuissanceClicked(wxCommandEvent &event){
     }
 }
 
-void MyFrame::OnBtnDeleteClicked(wxCommandEvent &event){
-
-}
-void MyFrame::OnBtnClearClicked(wxCommandEvent &event){
-
-}
 void MyFrame::OnBtnCarreClicked(wxCommandEvent &event){
     if (pileCalculatrice->_myPile.size() > 1)
     {
@@ -347,27 +372,54 @@ void MyFrame::OnBtnCarreClicked(wxCommandEvent &event){
         supprimer1Ligne();
 
         //on met au carré et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::carre(pileCalculatrice->element1);
+        pileCalculatrice->resultatOperation = MathFonction::Carre(pileCalculatrice->element1);
         pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
         afficherResultat();
     }
 }
-void MyFrame::OnBtnMPlusClicked(wxCommandEvent &event){
 
+void MyFrame::OnBtn10PuissanceClicked(wxCommandEvent &event){
+    //TODO
+}
+
+void MyFrame::OnBtnRacineClicked(wxCommandEvent &event){
+    //TODO
+}
+
+void MyFrame::OnBtnCubeClicked(wxCommandEvent &event){
+    //TODO
+}
+
+void MyFrame::OnBtnExpoClicked(wxCommandEvent &event){
+    //TODO
+}
+
+void MyFrame::OnBtnLnClicked(wxCommandEvent &event){
+    //TODO
+}
+
+void MyFrame::OnBtnLogClicked(wxCommandEvent &event){
+    //TODO
+}
+
+
+//*************FONCTIONS MEMOIRE*************
+void MyFrame::OnBtnMPlusClicked(wxCommandEvent &event){
+    //TODO AXEL
 }
 void MyFrame::OnBtnMMoinsClicked(wxCommandEvent &event){
-
+    //TODO AXEL
 }
 void MyFrame::OnBtnMRClicked(wxCommandEvent &event){
-
+    //TODO AXEL
 }
 void MyFrame::OnBtnMCClicked(wxCommandEvent &event){
-
+    //TODO AXEL
 }
 
-
+//*************AUTRES*************
 void MyFrame::supprimer1Ligne(){
     this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne et -2 pour les 2 "\n"        int tailleAvantDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-3) +1; //+1 pour le saut à la ligne
     

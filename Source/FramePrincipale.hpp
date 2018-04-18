@@ -8,8 +8,8 @@
 #define MAINFRAME_H_INCLUDED
 
 #include <wx/wx.h>
-#include "pile.hpp"
-#include "mathFonction.hpp"
+#include "Pile.hpp"
+#include "MathFonction.hpp"
 
 enum
 {
@@ -32,6 +32,12 @@ enum
     ID_BTN_SOUSTRAIRE,
     ID_BTN_ADDITIONNER,
     ID_BTN_PUISSANCE,
+    ID_BTN_10_PUISSANCE,
+    ID_BTN_RACINE,
+    ID_BTN_CUBE,
+    ID_BTN_EXPO,
+    ID_BTN_LN,
+    ID_BTN_LOG,
     ID_BTN_DELETE,
     ID_BTN_CLEAR,
     ID_BTN_CARRE,
@@ -57,10 +63,11 @@ class MyFrame : public wxFrame
         int tailleAvantDerniereLigne;
 
         wxBoxSizer *sizer;
-        wxGridSizer *grille;
+        wxGridSizer *grille, *grilleEntree, *sousGrille;
         wxTextCtrl *display;
         wxButton *bouton0, *bouton1, *bouton2, *bouton3, *bouton4, *bouton5, *bouton6, *bouton7, *bouton8, *bouton9;
-        wxButton *boutonDiviser, *boutonMultiplier, *boutonAdditionner, *boutonSoustraire, *boutonPourcent, *boutonPuissance, *boutonCarre;
+        wxButton *boutonDiviser, *boutonMultiplier, *boutonAdditionner, *boutonSoustraire, *boutonPourcent, *boutonPuissance, *boutonCarre, *bouton10Puissance;
+        wxButton *boutonRacine, *boutonCube, *boutonExpo, *boutonLn, *boutonLog;
         wxButton *boutonPoint, *boutonDelete, *boutonClear, *boutonMPlus, *boutonMMoins, *boutonMR, *boutonMC;
         wxButton *boutonTest, *boutonTest2;
         wxButton *boutonEntrer;
@@ -85,6 +92,12 @@ class MyFrame : public wxFrame
         void OnBtnSoustraireClicked(wxCommandEvent &event);
         void OnBtnAdditionnerClicked(wxCommandEvent &event);
         void OnBtnPuissanceClicked(wxCommandEvent &event);
+        void OnBtn10PuissanceClicked(wxCommandEvent &event);
+        void OnBtnRacineClicked(wxCommandEvent &event);
+        void OnBtnCubeClicked(wxCommandEvent &event);
+        void OnBtnExpoClicked(wxCommandEvent &event);
+        void OnBtnLnClicked(wxCommandEvent &event);
+        void OnBtnLogClicked(wxCommandEvent &event);
         void OnBtnDeleteClicked(wxCommandEvent &event);
         void OnBtnClearClicked(wxCommandEvent &event);
         void OnBtnCarreClicked(wxCommandEvent &event);

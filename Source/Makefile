@@ -1,7 +1,7 @@
 #
 # Variables
 #
-OBJ = calculatrice.cpp framePrincipale.cpp pile.cpp mathFonction.cpp
+OBJ = Calculatrice.cpp FramePrincipale.cpp Pile.cpp MathFonction.cpp
 
 # Cible de l’exécutable : édition des liens des fichiers objet
 #

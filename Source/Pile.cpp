@@ -1,29 +1,25 @@
+/* 
+ * Projet POO - Calculatrice
+ * BORIES - JORE - MARTINEZ - PHILIP
+ */
+
 /*
 La pile (ou stack en anglais) 
 est un type de stockage de données qui marche en LIFO (Last In First Out).
 Les elements ajouté et retiré de la pile se font donc toujours par le dessus.
- 
-Les fonction de la librairie "stack" sont:
-empty() – Retourne true si la pile est vide
-size() – Retourne la taille de la pile
-top() – Retourne "a reference" a l'element au dessus de la pile
-push(x) – Ajoute l'element 'x au dessus de la pile
-pop() – suprime le premier element de la pile
-
-il est necesaire d'instancier l'objet stack et le type d'elements qu'elle contiens ex : stack <int> g = gq;
 */
 
-
-//librairies interne
-#include "pile.hpp"
+#include "Pile.hpp"
 
 using namespace std;
 
 //Constructeur de la pile
 Pile::Pile(){
   this->_myPile;
+  this->element1 = 0;
+  this->element2 = 0;
+  this->resultatOperation = 0;
 }
-
 
 /**
  * Cette fonction permet d'ajouter un seul element au dessus de la pile
@@ -44,7 +40,6 @@ double Pile::recuperer ()
   this->_myPile.pop(); //supprime le premier
   return top1;
 }
-
 
 void Pile::supprimer (){
   //free this._myPile;

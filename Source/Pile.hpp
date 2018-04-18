@@ -1,4 +1,8 @@
-//librairies externe
+/* 
+ * Projet POO - Calculatrice
+ * BORIES - JORE - MARTINEZ - PHILIP
+ */
+
 #include <iostream>
 #include <stack>
 
@@ -8,6 +12,8 @@ class Pile
 {
 
 public:
+    double element1, element2, resultatOperation;
+
     Pile();
     ~Pile();
 

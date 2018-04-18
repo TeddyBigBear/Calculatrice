@@ -3,7 +3,7 @@
  * BORIES - JORE - MARTINEZ - PHILIP
  */
 
-#include "calculatrice.hpp"
+#include "Calculatrice.hpp"
 #include <iostream>
 
 using namespace std;
