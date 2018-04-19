@@ -25,7 +25,7 @@ Pile::Pile(){
  * Cette fonction permet d'ajouter un seul element au dessus de la pile
  * parametres : objet stack, l'element a ajouter
  */
-void Pile::ajouter (double element)
+void Pile::Ajouter (double element)
 {
   this->_myPile.push(element);
 }
@@ -34,15 +34,17 @@ void Pile::ajouter (double element)
  * Cette fonction renvois le premier element de la pile sans le supprimer
  * parametres : objet stack
  */
-double Pile::recuperer ()
+double Pile::Recuperer ()
 {
   double top1 = this->_myPile.top(); //enregistre le premier
   this->_myPile.pop(); //supprime le premier
   return top1;
 }
 
-void Pile::supprimer (){
-  //free this._myPile;
+void Pile::Supprimer (){
+  while (!this->_myPile.empty()){
+    this->_myPile.pop();
+  }
 }
 
 bool Pile::Pile1ElementMinimum(){
@@ -51,10 +53,10 @@ bool Pile::Pile1ElementMinimum(){
     this->_myPile.pop(); //supprime le premier
     
     if(this->_myPile.empty()){
-      ajouter(top1);
+      Ajouter(top1);
       return true; //La pile est vide après avoir retiré 1 élément, il y a au moins 1 élément
     }
-    else ajouter(top1);
+    else Ajouter(top1);
     return true; //La pile n'est pas vide après avoir retiré 1 élément, la pile a au moins 2 éléments
   }
   return false;//La pile a 0 élément
@@ -66,11 +68,11 @@ bool Pile::Pile2ElementsMinimum(){
     this->_myPile.pop(); //supprime le premier
     
     if(this->_myPile.empty()){
-      ajouter(top1);
+      Ajouter(top1);
       return false; //La pile est vide après avoir retiré 1 élément, il n'y a qu'un seul élement
     }
     else {
-      ajouter(top1);
+      Ajouter(top1);
       return true; //La pile n'est pas vide après avoir retiré 1 élément, la pile a au moins 2 éléments 
     }
   }

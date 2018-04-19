@@ -276,9 +276,7 @@ void MyFrame::OnBtnDeleteClicked(wxCommandEvent &event){
 }
 
 void MyFrame::OnBtnClearClicked(wxCommandEvent &event){
-    while (!pileCalculatrice->_myPile.empty()){
-        pileCalculatrice->_myPile.pop();
-    }
+    pileCalculatrice->Supprimer();
     this->debut = 0;
     //Récupère toute les lignes ajoutées à la pile + l'éventuelle ligne non empilée = la totalité du display.
     this->fin = this->tailleTexte+display->GetLineText(display->GetNumberOfLines()-1).size(); 
@@ -290,15 +288,15 @@ void MyFrame::OnBtnPourcentClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile2ElementsMinimum())
     {
         //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
         //on supprime les 2 lignes correspondantes
         supprimer2Lignes();
 
         //on fait le pourcentage de l'élément 1 sur l'élément 2 et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Pourcentage(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         //on affiche le résultat
         afficherResultat();
     }
@@ -308,15 +306,15 @@ void MyFrame::OnBtnDiviserClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile2ElementsMinimum())
     {
         //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
         //on supprime les 2 lignes correspondantes
         supprimer2Lignes();
 
         //on les divise et on met le resultat dans la pile
         double resultat = MathFonction::Diviser(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         //on affiche le résultat
         afficherResultat();
     }
@@ -326,15 +324,15 @@ void MyFrame::OnBtnMultiplierClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile2ElementsMinimum())
     {
         //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
         //on supprime les 2 lignes correspondantes
         supprimer2Lignes();
 
         //on les multiplie et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Multiplier(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         //on affiche le résultat
         afficherResultat();
     }
@@ -344,15 +342,15 @@ void MyFrame::OnBtnSoustraireClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile2ElementsMinimum())
     {
         //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
         //on supprime les 2 lignes correspondantes
         supprimer2Lignes();
 
         //on les soustrait et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Soustraire(pileCalculatrice->element2, pileCalculatrice->element1); //Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         //on affiche le résultat
         afficherResultat();
     }
@@ -362,15 +360,15 @@ void MyFrame::OnBtnAdditionnerClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile2ElementsMinimum())
     {
          //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
         //on supprime les 2 lignes correspondantes
         supprimer2Lignes();
 
         //on les additionne et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Additionner(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
         afficherResultat();
@@ -380,14 +378,14 @@ void MyFrame::OnBtnAdditionnerClicked(wxCommandEvent &event){
 void MyFrame::OnBtnPuissanceClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile2ElementsMinimum()){
       //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
         supprimer2Lignes();
 
         //on met élément2 à la puissance d'élément1 et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Puissance(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
         afficherResultat();
@@ -398,14 +396,14 @@ void MyFrame::OnBtnCarreClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile1ElementMinimum())
     {
         //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
         //on supprime la dernière ligne
         supprimer1Ligne();
 
         //on met au carré et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Carre(pileCalculatrice->element1);
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
         afficherResultat();
@@ -416,14 +414,14 @@ void MyFrame::OnBtn10PuissanceClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile1ElementMinimum())
     {
         //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
         //on supprime la dernière ligne
         supprimer1Ligne();
 
         //on met au carré et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::PuissanceDe10(pileCalculatrice->element1);
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
         afficherResultat();
@@ -434,14 +432,14 @@ void MyFrame::OnBtnRacineClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile1ElementMinimum())
     {
         //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
         //on supprime la dernière ligne
         supprimer1Ligne();
 
         //on met au carré et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Racine(pileCalculatrice->element1);
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
         afficherResultat();
@@ -452,14 +450,14 @@ void MyFrame::OnBtnCubeClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile1ElementMinimum())
     {
         //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
         //on supprime la dernière ligne
         supprimer1Ligne();
 
         //on met au carré et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Cube(pileCalculatrice->element1);
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
         afficherResultat();
@@ -470,14 +468,14 @@ void MyFrame::OnBtnExpoClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile1ElementMinimum())
     {
         //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
         //on supprime la dernière ligne
         supprimer1Ligne();
 
         //on met au carré et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Expo(pileCalculatrice->element1);
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
         afficherResultat();
@@ -488,14 +486,14 @@ void MyFrame::OnBtnLnClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile1ElementMinimum())
     {
         //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
         //on supprime la dernière ligne
         supprimer1Ligne();
 
         //on met au carré et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Ln(pileCalculatrice->element1);
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
         afficherResultat();
@@ -506,14 +504,14 @@ void MyFrame::OnBtnLogClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile1ElementMinimum())
     {
         //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->recuperer();
+        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
         //on supprime la dernière ligne
         supprimer1Ligne();
 
         //on met au carré et on met le resultat dans la pile
         pileCalculatrice->resultatOperation = MathFonction::Log(pileCalculatrice->element1);
-        pileCalculatrice->ajouter(pileCalculatrice->resultatOperation);
+        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
         
         //on affiche le résultat
         afficherResultat();

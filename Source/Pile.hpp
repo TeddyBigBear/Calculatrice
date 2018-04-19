@@ -19,9 +19,9 @@ public:
 
     stack<double> _myPile;
 
-    void ajouter (double element);
-    double recuperer ();
-    void supprimer ();
+    void Ajouter (double element);
+    double Recuperer ();
+    void Supprimer ();
     bool Pile1ElementMinimum();
     bool Pile2ElementsMinimum(); 
 };
