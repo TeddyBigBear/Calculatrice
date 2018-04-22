@@ -304,19 +304,26 @@ void MyFrame::OnBtnPourcentClicked(wxCommandEvent &event){
 
 void MyFrame::OnBtnDiviserClicked(wxCommandEvent &event){
     if (pileCalculatrice->Pile2ElementsMinimum())
-    {
-        //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
+    {   
+        if (pileCalculatrice->_myPile.top()==0){
+            int reponse = wxMessageBox(_T("Division par 0 impossible !"),
+                                        _T("Attention !"), // Titre de la boite de message
+                                        wxOK); // Style
+        }
+        else {
+            //on recupère les deux premiers elements de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+            pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
-        //on supprime les 2 lignes correspondantes
-        supprimer2Lignes();
+            //on supprime les 2 lignes correspondantes
+            supprimer2Lignes();
 
-        //on les divise et on met le resultat dans la pile
-        double resultat = MathFonction::Diviser(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        //on affiche le résultat
-        afficherResultat();
+            //on les divise et on met le resultat dans la pile
+            double resultat = MathFonction::Diviser(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
