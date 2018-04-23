@@ -303,10 +303,11 @@ void MyFrame::OnBtnPointClicked(wxCommandEvent &event){
     }
 }
 void MyFrame::OnBtnNegatifClicked(wxCommandEvent &event){
+    this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-1);
     if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
         Infini();
     }
-    else{
+    else if (this->tailleDerniereLigne == 0){
         (*display) << "-";
         this->tailleTexte += 1;
     }
