@@ -355,6 +355,7 @@ void MyFrame::OnBtnClearClicked(wxCommandEvent &event){
     //Récupère toute les lignes ajoutées à la pile + l'éventuelle ligne non empilée = la totalité du display.
     this->fin = this->tailleTexte+display->GetLineText(display->GetNumberOfLines()-1).size(); 
     display->Remove(this->debut,this->fin);
+    this->tailleTexte = 0;
 }
 
 //*************FONCTIONS MATHEMATIQUES*************
@@ -699,7 +700,7 @@ void MyFrame::OnBtnMCClicked(wxCommandEvent &event){
 
 //*************AUTRES*************
 void MyFrame::supprimer1Ligne(){
-    this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne et -2 pour les 2 "\n"        int tailleAvantDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-3) +1; //+1 pour le saut à la ligne
+    this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne et -2 pour les 2 "\n"
     
     this->debut = this->tailleTexte - this->tailleDerniereLigne;
     this->fin = this->tailleTexte;
