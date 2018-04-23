@@ -18,8 +18,12 @@ test-calculatrice : $(OBJ_TEST)
 #
 Pile.o: Pile.cpp Pile.hpp
 TestPile.o: TestPile.cpp catch.hpp
+	g++ -std=c++11 -c -o $@ TestPile.cpp 
 MathFonction.o: MathFonction.cpp MathFonction.hpp
 TestMathFonction.o: TestMathFonction.cpp catch.hpp
+	g++ -std=c++11 -c -o $@ TestMathFonction.cpp 
+#besoin de spécifier c++11 pour utiliser la fonction to_string dans le test
+
 
 # Cibles habituelles
 #
