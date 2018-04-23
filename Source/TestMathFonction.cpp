@@ -31,7 +31,12 @@ TEST_CASE("Test fonctions mathématiques", "[MathFonction]") {
     CHECK(MathFonction::Ln(nb1)==log(2));
     CHECK(MathFonction::PuissanceDe10(nb1)==100);
 
-    //Test de cas spécifiques
+    //Test de cas avec 0
     CHECK(MathFonction::Diviser(nb1, 0)==0);
+    
+    //Test de cas négatifs
+    //racine
+    //ln
+    //log
 }
 

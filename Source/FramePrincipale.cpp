@@ -194,85 +194,150 @@ void MyFrame::OnBtnQuitClicked(wxCommandEvent &event){
 
 //*************CHIFFRES*************
 void MyFrame::OnBtn0Clicked(wxCommandEvent &event){
-    (*display) << "0";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "0";
+        this->tailleTexte += 1;
+    }
 }
 
 void MyFrame::OnBtn1Clicked(wxCommandEvent &event){
-    (*display) << "1";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "1";
+        this->tailleTexte += 1;
+    }
 }
 
 void MyFrame::OnBtn2Clicked(wxCommandEvent &event){
-    (*display) << "2";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "2";
+        this->tailleTexte += 1;
+    }
 }
 
 void MyFrame::OnBtn3Clicked(wxCommandEvent &event){
-    (*display) << "3";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "3";
+        this->tailleTexte += 1;
+    }
 }
 
 void MyFrame::OnBtn4Clicked(wxCommandEvent &event){
-    (*display) << "4";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "4";
+        this->tailleTexte += 1;
+    }
 }
 
 void MyFrame::OnBtn5Clicked(wxCommandEvent &event){
-    (*display) << "5";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "5";
+        this->tailleTexte += 1;
+    }
 }
 
 void MyFrame::OnBtn6Clicked(wxCommandEvent &event){
-    (*display) << "6";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "6";
+        this->tailleTexte += 1;
+    }
 }
 
 void MyFrame::OnBtn7Clicked(wxCommandEvent &event){
-    (*display) << "7";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "7";
+        this->tailleTexte += 1;
+    }
 }
 
 void MyFrame::OnBtn8Clicked(wxCommandEvent &event){
-    (*display) << "8";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "8";
+        this->tailleTexte += 1;
+    }
 }
 
 void MyFrame::OnBtn9Clicked(wxCommandEvent &event){
-    (*display) << "9";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "9";
+        this->tailleTexte += 1;
+    }
 }
 
 void MyFrame::OnBtnPointClicked(wxCommandEvent &event){
-    (*display) << ".";
-    this->tailleTexte += 1;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << ".";
+        this->tailleTexte += 1;
+    }
 }
 
 //*************ENTRER DELETE CLEAR*************
 void MyFrame::OnBtnEntrerClicked(wxCommandEvent &event){
-    wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
-    //si la ligne n'est pas vide
-    if (strValue != ""){
-        double element = atof(strValue);
-        pileCalculatrice->_myPile.push(element);
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
+        //si la ligne n'est pas vide
+        if (strValue != ""){
+            double element = atof(strValue);
+            pileCalculatrice->_myPile.push(element);
 
-        //this->tailleTexte += strValue.size() + 1; //+1 correspond au saut à la ligne
-        this->tailleTexte += 1; //saut de ligne
+            //this->tailleTexte += strValue.size() + 1; //+1 correspond au saut à la ligne
+            this->tailleTexte += 1; //saut de ligne
 
-        (*display) << "\n";
+            (*display) << "\n";
+        }
     }
 }
 
 void MyFrame::OnBtnDeleteClicked(wxCommandEvent &event){
-    this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-1) +1;
-    this->fin = this->tailleTexte;
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-1) +1;
+        this->fin = this->tailleTexte;
 
-    //on teste >1 car on veut garder le /n
-    if(this->tailleDerniereLigne>1){
-        display->Remove(this->fin -1, this->fin);
-        this->tailleDerniereLigne -= 1;
-        this->tailleTexte -= 1;
-    } 
+        //on teste >1 car on veut garder le /n
+        if(this->tailleDerniereLigne>1){
+            display->Remove(this->fin -1, this->fin);
+            this->tailleDerniereLigne -= 1;
+            this->tailleTexte -= 1;
+        } 
+    }
 }
 
 void MyFrame::OnBtnClearClicked(wxCommandEvent &event){
@@ -285,32 +350,12 @@ void MyFrame::OnBtnClearClicked(wxCommandEvent &event){
 
 //*************FONCTIONS MATHEMATIQUES*************
 void MyFrame::OnBtnPourcentClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile2ElementsMinimum())
-    {
-        //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
-
-        //on supprime les 2 lignes correspondantes
-        supprimer2Lignes();
-
-        //on fait le pourcentage de l'élément 1 sur l'élément 2 et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Pourcentage(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        //on affiche le résultat
-        afficherResultat();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
     }
-}
-
-void MyFrame::OnBtnDiviserClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile2ElementsMinimum())
-    {   
-        if (pileCalculatrice->_myPile.top()==0){
-            int reponse = wxMessageBox(_T("Division par 0 impossible !"),
-                                        _T("Attention !"), // Titre de la boite de message
-                                        wxOK); // Style
-        }
-        else {
+    else{
+        if (pileCalculatrice->Pile2ElementsMinimum())
+        {
             //on recupère les deux premiers elements de la pile
             pileCalculatrice->element1 = pileCalculatrice->Recuperer();
             pileCalculatrice->element2 = pileCalculatrice->Recuperer();
@@ -318,8 +363,8 @@ void MyFrame::OnBtnDiviserClicked(wxCommandEvent &event){
             //on supprime les 2 lignes correspondantes
             supprimer2Lignes();
 
-            //on les divise et on met le resultat dans la pile
-            double resultat = MathFonction::Diviser(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+            //on fait le pourcentage de l'élément 1 sur l'élément 2 et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Pourcentage(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
             pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
             //on affiche le résultat
             afficherResultat();
@@ -327,201 +372,286 @@ void MyFrame::OnBtnDiviserClicked(wxCommandEvent &event){
     }
 }
 
+void MyFrame::OnBtnDiviserClicked(wxCommandEvent &event){
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile2ElementsMinimum())
+        {   
+            if (pileCalculatrice->_myPile.top()==0){
+                int reponse = wxMessageBox(_T("Division par 0 impossible !"),
+                                            _T("Attention !"), // Titre de la boite de message
+                                            wxOK); // Style
+            }
+            else {
+                //on recupère les deux premiers elements de la pile
+                pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+                pileCalculatrice->element2 = pileCalculatrice->Recuperer();
+
+                //on supprime les 2 lignes correspondantes
+                supprimer2Lignes();
+
+                //on les divise et on met le resultat dans la pile
+                double resultat = MathFonction::Diviser(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+                pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+                //on affiche le résultat
+                afficherResultat();
+            }
+        }
+    }
+}
+
 void MyFrame::OnBtnMultiplierClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile2ElementsMinimum())
-    {
-        //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile2ElementsMinimum())
+        {
+            //on recupère les deux premiers elements de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+            pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
-        //on supprime les 2 lignes correspondantes
-        supprimer2Lignes();
+            //on supprime les 2 lignes correspondantes
+            supprimer2Lignes();
 
-        //on les multiplie et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Multiplier(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        //on affiche le résultat
-        afficherResultat();
+            //on les multiplie et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Multiplier(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
 void MyFrame::OnBtnSoustraireClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile2ElementsMinimum())
-    {
-        //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile2ElementsMinimum())
+        {
+            //on recupère les deux premiers elements de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+            pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
-        //on supprime les 2 lignes correspondantes
-        supprimer2Lignes();
+            //on supprime les 2 lignes correspondantes
+            supprimer2Lignes();
 
-        //on les soustrait et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Soustraire(pileCalculatrice->element2, pileCalculatrice->element1); //Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        //on affiche le résultat
-        afficherResultat();
+            //on les soustrait et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Soustraire(pileCalculatrice->element2, pileCalculatrice->element1); //Element2 avant element1 pour garder le bon ordre d'opérande
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
 void MyFrame::OnBtnAdditionnerClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile2ElementsMinimum())
-    {
-         //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile2ElementsMinimum())
+        {
+            //on recupère les deux premiers elements de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+            pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
-        //on supprime les 2 lignes correspondantes
-        supprimer2Lignes();
+            //on supprime les 2 lignes correspondantes
+            supprimer2Lignes();
 
-        //on les additionne et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Additionner(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        
-        //on affiche le résultat
-        afficherResultat();
+            //on les additionne et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Additionner(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
 void MyFrame::OnBtnPuissanceClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile2ElementsMinimum()){
-      //on recupère les deux premiers elements de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
-        pileCalculatrice->element2 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile2ElementsMinimum()){
+        //on recupère les deux premiers elements de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+            pileCalculatrice->element2 = pileCalculatrice->Recuperer();
 
-        supprimer2Lignes();
+            supprimer2Lignes();
 
-        //on met élément2 à la puissance d'élément1 et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Puissance(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        
-        //on affiche le résultat
-        afficherResultat();
+            //on met élément2 à la puissance d'élément1 et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Puissance(pileCalculatrice->element2, pileCalculatrice->element1);//Element2 avant element1 pour garder le bon ordre d'opérande
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
 void MyFrame::OnBtnCarreClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile1ElementMinimum())
-    {
-        //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile1ElementMinimum())
+        {
+            //on recupère le premier element de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
-        //on supprime la dernière ligne
-        supprimer1Ligne();
+            //on supprime la dernière ligne
+            supprimer1Ligne();
 
-        //on met au carré et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Carre(pileCalculatrice->element1);
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        
-        //on affiche le résultat
-        afficherResultat();
+            //on met au carré et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Carre(pileCalculatrice->element1);
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
 void MyFrame::OnBtn10PuissanceClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile1ElementMinimum())
-    {
-        //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile1ElementMinimum())
+        {
+            //on recupère le premier element de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
-        //on supprime la dernière ligne
-        supprimer1Ligne();
+            //on supprime la dernière ligne
+            supprimer1Ligne();
 
-        //on met au carré et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::PuissanceDe10(pileCalculatrice->element1);
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        
-        //on affiche le résultat
-        afficherResultat();
+            //on met au carré et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::PuissanceDe10(pileCalculatrice->element1);
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
 void MyFrame::OnBtnRacineClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile1ElementMinimum())
-    {
-        //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile1ElementMinimum())
+        {
+            //on recupère le premier element de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
-        //on supprime la dernière ligne
-        supprimer1Ligne();
+            //on supprime la dernière ligne
+            supprimer1Ligne();
 
-        //on met au carré et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Racine(pileCalculatrice->element1);
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        
-        //on affiche le résultat
-        afficherResultat();
+            //on met au carré et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Racine(pileCalculatrice->element1);
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
 void MyFrame::OnBtnCubeClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile1ElementMinimum())
-    {
-        //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile1ElementMinimum())
+        {
+            //on recupère le premier element de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
-        //on supprime la dernière ligne
-        supprimer1Ligne();
+            //on supprime la dernière ligne
+            supprimer1Ligne();
 
-        //on met au carré et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Cube(pileCalculatrice->element1);
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        
-        //on affiche le résultat
-        afficherResultat();
+            //on met au carré et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Cube(pileCalculatrice->element1);
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
 void MyFrame::OnBtnExpoClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile1ElementMinimum())
-    {
-        //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile1ElementMinimum())
+        {
+            //on recupère le premier element de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
-        //on supprime la dernière ligne
-        supprimer1Ligne();
+            //on supprime la dernière ligne
+            supprimer1Ligne();
 
-        //on met au carré et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Expo(pileCalculatrice->element1);
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        
-        //on affiche le résultat
-        afficherResultat();
+            //on met au carré et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Expo(pileCalculatrice->element1);
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
 void MyFrame::OnBtnLnClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile1ElementMinimum())
-    {
-        //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile1ElementMinimum())
+        {
+            //on recupère le premier element de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
-        //on supprime la dernière ligne
-        supprimer1Ligne();
+            //on supprime la dernière ligne
+            supprimer1Ligne();
 
-        //on met au carré et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Ln(pileCalculatrice->element1);
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        
-        //on affiche le résultat
-        afficherResultat();
+            //on met au carré et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Ln(pileCalculatrice->element1);
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
 void MyFrame::OnBtnLogClicked(wxCommandEvent &event){
-    if (pileCalculatrice->Pile1ElementMinimum())
-    {
-        //on recupère le premier element de la pile
-        pileCalculatrice->element1 = pileCalculatrice->Recuperer();
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        if (pileCalculatrice->Pile1ElementMinimum())
+        {
+            //on recupère le premier element de la pile
+            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
 
-        //on supprime la dernière ligne
-        supprimer1Ligne();
+            //on supprime la dernière ligne
+            supprimer1Ligne();
 
-        //on met au carré et on met le resultat dans la pile
-        pileCalculatrice->resultatOperation = MathFonction::Log(pileCalculatrice->element1);
-        pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-        
-        //on affiche le résultat
-        afficherResultat();
+            //on met au carré et on met le resultat dans la pile
+            pileCalculatrice->resultatOperation = MathFonction::Log(pileCalculatrice->element1);
+            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
+            
+            //on affiche le résultat
+            afficherResultat();
+        }
     }
 }
 
@@ -529,26 +659,46 @@ void MyFrame::OnBtnLogClicked(wxCommandEvent &event){
 //*************FONCTIONS MEMOIRE*************
 
 void MyFrame::OnBtnMPlusClicked(wxCommandEvent &event){
-    wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
-    double element = atof(strValue);
-    this->memoire = this->memoire + element;
-    (*display) << "\n" << this->memoire << "\n";
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
+        double element = atof(strValue);
+        this->memoire = this->memoire + element;
+        (*display) << "\n" << this->memoire << "\n";
+    }
 }
 
 void MyFrame::OnBtnMMoinsClicked(wxCommandEvent &event){
-    wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
-    double element = atof(strValue);
-    this->memoire = this->memoire - element;
-    (*display) << "\n" << this->memoire << "\n";
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
+        double element = atof(strValue);
+        this->memoire = this->memoire - element;
+        (*display) << "\n" << this->memoire << "\n";
+    }
 }
 
 void MyFrame::OnBtnMRClicked(wxCommandEvent &event){
-    (*display) << this->memoire << "\n";
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << this->memoire << "\n";
+    }
 }
 
 void MyFrame::OnBtnMCClicked(wxCommandEvent &event){
-    this->memoire = 0;
-    (*display) << this->memoire << "\n";
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        this->memoire = 0;
+        (*display) << this->memoire << "\n";
+    }
 }
 
 
@@ -577,4 +727,11 @@ void MyFrame::afficherResultat(){
 
     this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
     this->tailleTexte = this->tailleTexte - (this->fin - this->debut) + this->tailleDerniereLigne; //+1 = saut à la ligne
+}
+
+
+void MyFrame::Infini(){
+    wxMessageBox(_T("Bravo ! Vous avez atteint la limite de la calculatrice, maintenant il faut faire un clear.\n"),
+                _T("Attention !"), // Titre de la boite de message
+                wxOK); // Style
 }
