@@ -31,11 +31,9 @@ TEST_CASE("Test Pile", "[Pile]") {
     MyPileTest->Ajouter(nb1);
     MyPileTest->Ajouter(nb2);
     MyPileTest->Supprimer();
-    //Le test suivant est commenté car le résultat donné est bien 0.0, mais lors de la comparaison, le CHECK nous retourne une erreur
-    //CHECK(MyPileTest->_myPile.top()==0.0);
-
-    //Au moins 1 élément
+    //Test si pile est bien vide
     CHECK(MyPileTest->Pile1ElementMinimum()==false);
+    
     MyPileTest->Ajouter(nb1);
     CHECK(MyPileTest->Pile1ElementMinimum()==true);
 
