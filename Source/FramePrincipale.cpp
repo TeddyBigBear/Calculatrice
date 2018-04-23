@@ -553,6 +553,9 @@ void MyFrame::OnBtnRacineClicked(wxCommandEvent &event){
     if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
         Infini();
     }
+    else if (atof(display->GetLineText(display->GetNumberOfLines()-2))<0){
+        ValeurInterditeRacine();
+    }
     else{
         if (pileCalculatrice->Pile1ElementMinimum())
         {
@@ -599,6 +602,9 @@ void MyFrame::OnBtnLnClicked(wxCommandEvent &event){
     if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
         Infini();
     }
+    else if (atof(display->GetLineText(display->GetNumberOfLines()-2))<=0){
+        ValeurInterditeLogLn();
+    }
     else{
         if (pileCalculatrice->Pile1ElementMinimum())
         {
@@ -621,6 +627,9 @@ void MyFrame::OnBtnLnClicked(wxCommandEvent &event){
 void MyFrame::OnBtnLogClicked(wxCommandEvent &event){
     if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
         Infini();
+    }
+    else if (atof(display->GetLineText(display->GetNumberOfLines()-2))<=0){
+        ValeurInterditeLogLn();
     }
     else{
         if (pileCalculatrice->Pile1ElementMinimum())
@@ -715,9 +724,21 @@ void MyFrame::afficherResultat(){
     this->tailleTexte = this->tailleTexte - (this->fin - this->debut) + this->tailleDerniereLigne; //+1 = saut à la ligne
 }
 
-
+//Gestion des erreurs
 void MyFrame::Infini(){
     wxMessageBox(_T("Bravo ! Vous avez atteint la limite de la calculatrice, maintenant il faut faire un clear.\n"),
+                _T("Attention !"), // Titre de la boite de message
+                wxOK); // Style
+}
+
+void MyFrame::ValeurInterditeLogLn(){
+    wxMessageBox(_T("Vous devez utiliser une valeur supérieur à 0 .\n"),
+                _T("Attention !"), // Titre de la boite de message
+                wxOK); // Style
+}
+
+void MyFrame::ValeurInterditeRacine(){
+    wxMessageBox(_T("Vous devez utiliser une valeur nulle ou positive .\n"),
                 _T("Attention !"), // Titre de la boite de message
                 wxOK); // Style
 }

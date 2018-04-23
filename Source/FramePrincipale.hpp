@@ -115,8 +115,10 @@ class MyFrame : public wxFrame
         //Méthode d'affichage dans le Display
         void afficherResultat();
 
-        //Gestion de l'infini
+        //Gestion d'erreurs
         void Infini();
+        void ValeurInterditeLogLn();
+        void ValeurInterditeRacine();
 
          // Déclaration de la table des évènements
         DECLARE_EVENT_TABLE()
