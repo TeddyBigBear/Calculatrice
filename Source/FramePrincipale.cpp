@@ -32,7 +32,7 @@ BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_BUTTON(ID_BTN_PUISSANCE, MyFrame::OnBtnPuissanceClicked)
     EVT_BUTTON(ID_BTN_10_PUISSANCE, MyFrame::OnBtn10PuissanceClicked)
     EVT_BUTTON(ID_BTN_RACINE, MyFrame::OnBtnRacineClicked)
-    EVT_BUTTON(ID_BTN_CUBE, MyFrame::OnBtnCubeClicked)
+    EVT_BUTTON(ID_BTN_NEGATIF, MyFrame::OnBtnNegatifClicked)
     EVT_BUTTON(ID_BTN_EXPO, MyFrame::OnBtnExpoClicked)
     EVT_BUTTON(ID_BTN_LN, MyFrame::OnBtnLnClicked)
     EVT_BUTTON(ID_BTN_LOG, MyFrame::OnBtnLogClicked)
@@ -77,7 +77,7 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     boutonPuissance=new wxButton(this, ID_BTN_PUISSANCE, wxT("^"));
     bouton10Puissance=new wxButton(this, ID_BTN_10_PUISSANCE, wxT("10^"));
     boutonRacine=new wxButton(this, ID_BTN_RACINE, wxT("√"));
-    boutonCube=new wxButton(this, ID_BTN_CUBE, wxT("^3"));
+    boutonNegatif=new wxButton(this, ID_BTN_NEGATIF, wxT("( - )"));
     boutonExpo=new wxButton(this, ID_BTN_EXPO, wxT("e^"));
     boutonLn=new wxButton(this, ID_BTN_LN, wxT("ln"));
     boutonLog=new wxButton(this, ID_BTN_LOG, wxT("log"));
@@ -101,12 +101,12 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     boutonDiviser->SetBackgroundColour(*couleurBleuClair);
     boutonMultiplier->SetBackgroundColour(*couleurBleuClair);
     boutonSoustraire->SetBackgroundColour(*couleurBleuClair);
-    boutonPourcent->SetBackgroundColour(*couleurBleuClair);
+    boutonNegatif->SetBackgroundColour(*couleurBleuClair);
     boutonAdditionner->SetBackgroundColour(*couleurBleuClair);
     boutonPuissance->SetBackgroundColour(*couleurBleu);
     bouton10Puissance->SetBackgroundColour(*couleurBleu);
     boutonRacine->SetBackgroundColour(*couleurBleu);
-    boutonCube->SetBackgroundColour(*couleurBleu);
+    boutonPourcent->SetBackgroundColour(*couleurBleu);
     boutonExpo->SetBackgroundColour(*couleurBleu);
     boutonLn->SetBackgroundColour(*couleurBleu);
     boutonLog->SetBackgroundColour(*couleurBleu);
@@ -133,7 +133,7 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     grille->Add(bouton5, 0, wxEXPAND);
     grille->Add(bouton6, 0, wxEXPAND);
     grille->Add(boutonMultiplier, 0, wxEXPAND);
-    grille->Add(boutonCube, 0, wxEXPAND);
+    grille->Add(boutonCarre, 0, wxEXPAND);
     grille->Add(boutonLn, 0, wxEXPAND);
     grille->Add(boutonMR, 0, wxEXPAND);
     //3eme ligne
@@ -141,15 +141,15 @@ MyFrame::MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxPoint
     grille->Add(bouton2, 0, wxEXPAND);
     grille->Add(bouton3, 0, wxEXPAND);
     grille->Add(boutonSoustraire, 0, wxEXPAND);
-    grille->Add(boutonCarre, 0, wxEXPAND);
+    grille->Add(boutonPuissance, 0, wxEXPAND);
     grille->Add(boutonLog, 0, wxEXPAND);
     grille->Add(boutonMC, 0, wxEXPAND);
     //4eme ligne
     grille->Add(bouton0, 0, wxEXPAND);
     grille->Add(boutonPoint, 0, wxEXPAND);
-    grille->Add(boutonPourcent, 0, wxEXPAND);
+    grille->Add(boutonNegatif, 0, wxEXPAND);
     grille->Add(boutonAdditionner, 0, wxEXPAND);
-    grille->Add(boutonPuissance, 0, wxEXPAND);
+    grille->Add(boutonPourcent, 0, wxEXPAND);
     grille->Add(boutonRacine, 0, wxEXPAND);
     grille->Add(boutonMMoins, 0, wxEXPAND);
 
@@ -299,6 +299,15 @@ void MyFrame::OnBtnPointClicked(wxCommandEvent &event){
     }
     else{
         (*display) << ".";
+        this->tailleTexte += 1;
+    }
+}
+void MyFrame::OnBtnNegatifClicked(wxCommandEvent &event){
+    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
+        Infini();
+    }
+    else{
+        (*display) << "-";
         this->tailleTexte += 1;
     }
 }
@@ -555,29 +564,6 @@ void MyFrame::OnBtnRacineClicked(wxCommandEvent &event){
 
             //on met au carré et on met le resultat dans la pile
             pileCalculatrice->resultatOperation = MathFonction::Racine(pileCalculatrice->element1);
-            pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
-            
-            //on affiche le résultat
-            afficherResultat();
-        }
-    }
-}
-
-void MyFrame::OnBtnCubeClicked(wxCommandEvent &event){
-    if (display->GetLineText(display->GetNumberOfLines()-2)=="inf"){
-        Infini();
-    }
-    else{
-        if (pileCalculatrice->Pile1ElementMinimum())
-        {
-            //on recupère le premier element de la pile
-            pileCalculatrice->element1 = pileCalculatrice->Recuperer();
-
-            //on supprime la dernière ligne
-            supprimer1Ligne();
-
-            //on met au carré et on met le resultat dans la pile
-            pileCalculatrice->resultatOperation = MathFonction::Cube(pileCalculatrice->element1);
             pileCalculatrice->Ajouter(pileCalculatrice->resultatOperation);
             
             //on affiche le résultat

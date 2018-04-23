@@ -34,7 +34,7 @@ enum
     ID_BTN_PUISSANCE,
     ID_BTN_10_PUISSANCE,
     ID_BTN_RACINE,
-    ID_BTN_CUBE,
+    ID_BTN_NEGATIF,
     ID_BTN_EXPO,
     ID_BTN_LN,
     ID_BTN_LOG,
@@ -69,7 +69,7 @@ class MyFrame : public wxFrame
         wxTextCtrl *display;
         wxButton *bouton0, *bouton1, *bouton2, *bouton3, *bouton4, *bouton5, *bouton6, *bouton7, *bouton8, *bouton9;
         wxButton *boutonDiviser, *boutonMultiplier, *boutonAdditionner, *boutonSoustraire, *boutonPourcent, *boutonPuissance, *boutonCarre, *bouton10Puissance;
-        wxButton *boutonRacine, *boutonCube, *boutonExpo, *boutonLn, *boutonLog;
+        wxButton *boutonRacine, *boutonNegatif, *boutonExpo, *boutonLn, *boutonLog;
         wxButton *boutonPoint, *boutonDelete, *boutonClear, *boutonMPlus, *boutonMMoins, *boutonMR, *boutonMC;
         wxButton *boutonTest, *boutonTest2;
         wxButton *boutonEntrer;
@@ -86,6 +86,7 @@ class MyFrame : public wxFrame
         void OnBtn7Clicked(wxCommandEvent &event);
         void OnBtn8Clicked(wxCommandEvent &event);
         void OnBtn9Clicked(wxCommandEvent &event);
+        void OnBtnNegatifClicked(wxCommandEvent &event);
         void OnBtnEntrerClicked(wxCommandEvent &event);
         void OnBtnPointClicked(wxCommandEvent &event);
         void OnBtnPourcentClicked(wxCommandEvent &event);
@@ -96,7 +97,6 @@ class MyFrame : public wxFrame
         void OnBtnPuissanceClicked(wxCommandEvent &event);
         void OnBtn10PuissanceClicked(wxCommandEvent &event);
         void OnBtnRacineClicked(wxCommandEvent &event);
-        void OnBtnCubeClicked(wxCommandEvent &event);
         void OnBtnExpoClicked(wxCommandEvent &event);
         void OnBtnLnClicked(wxCommandEvent &event);
         void OnBtnLogClicked(wxCommandEvent &event);
