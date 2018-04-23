@@ -709,7 +709,7 @@ void MyFrame::supprimer2Lignes(){
 }
 
 void MyFrame::afficherResultat(){
-    (*display) << pileCalculatrice->resultatOperation << "\n";
+    (*display) << to_string(pileCalculatrice->resultatOperation) << "\n"; //la conversion en string permet d'avoir tous les chiffres après la virgule (sinon c'est coupé)
 
     this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-2) +1; //+1 pour le saut à la ligne
     this->tailleTexte = this->tailleTexte - (this->fin - this->debut) + this->tailleDerniereLigne; //+1 = saut à la ligne
