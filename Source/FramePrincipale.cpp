@@ -660,10 +660,25 @@ void MyFrame::OnBtnMPlusClicked(wxCommandEvent &event){
         Infini();
     }
     else{
+        //enregistrement valeur et somme avec l'ancienne
         wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
         double element = atof(strValue);
-        this->memoire = this->memoire + element;
-        (*display) << "\n" << this->memoire << "\n";
+        this->memoire +=element;
+
+
+        //suppression ligne courante
+        this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-1); //+1 pour le saut à la ligne et -2 pour les 2 "\n" 
+        this->debut = this->tailleTexte - this->tailleDerniereLigne;
+        this->fin = this->tailleTexte;
+        display->Remove(this->debut, this->fin);
+        //mise à jour taille : suppression taille de la ligne supprimée
+        this->tailleTexte = this->tailleTexte - (this->fin-this->debut);
+        
+        //mise à jour taille : ajout de la taille de l'élément
+        this->tailleTexte += (to_string(this->memoire)).size();
+
+        //affichage (il faut faire entrer pour ajouter le nombre dans la pile)
+        (*display) << to_string(this->memoire);
     }
 }
 
@@ -672,10 +687,25 @@ void MyFrame::OnBtnMMoinsClicked(wxCommandEvent &event){
         Infini();
     }
     else{
+        //enregistrement valeur et somme avec l'ancienne
         wxString strValue = display->GetLineText(display->GetNumberOfLines()-1);
         double element = atof(strValue);
-        this->memoire = this->memoire - element;
-        (*display) << "\n" << this->memoire << "\n";
+        this->memoire -=element;
+
+
+        //suppression ligne courante
+        this->tailleDerniereLigne = display->GetLineLength(display->GetNumberOfLines()-1); //+1 pour le saut à la ligne et -2 pour les 2 "\n" 
+        this->debut = this->tailleTexte - this->tailleDerniereLigne;
+        this->fin = this->tailleTexte;
+        display->Remove(this->debut, this->fin);
+        //mise à jour taille : suppression taille de la ligne supprimée
+        this->tailleTexte = this->tailleTexte - (this->fin-this->debut);
+        
+        //mise à jour taille : ajout de la taille de l'élément
+        this->tailleTexte += (to_string(this->memoire)).size();
+
+        //affichage (il faut faire entrer pour ajouter le nombre dans la pile)
+        (*display) << to_string(this->memoire);
     }
 }
 
@@ -684,7 +714,7 @@ void MyFrame::OnBtnMRClicked(wxCommandEvent &event){
         Infini();
     }
     else{
-        (*display) << this->memoire << "\n";
+        (*display) << this->memoire;
     }
 }
 
@@ -694,7 +724,7 @@ void MyFrame::OnBtnMCClicked(wxCommandEvent &event){
     }
     else{
         this->memoire = 0;
-        (*display) << this->memoire << "\n";
+        //(*display) << this->memoire;
     }
 }
 
